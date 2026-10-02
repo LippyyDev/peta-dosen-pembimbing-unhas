@@ -1044,9 +1044,7 @@
             pembimbing 2</span
           >
         </div>
-        <div class="presets" id="modes">
-          <span class="lbl">Urutkan menurut</span>
-        </div>
+        <div class="presets" id="modes"><span class="lbl">Tampilkan</span></div>
         <div id="combos"></div>
       </section>
 
@@ -1495,10 +1493,11 @@
           ["Sempro aman", 30, 20, 50],
         ];
         var MODES = [
-          ["abdi", "Skor dengan Pak Abdi"],
-          ["solo", "Skor pembimbing 1 sendiri"],
+          ["both", "Keduanya"],
+          ["abdi", "Hanya dengan Pak Abdi"],
+          ["solo", "Hanya pembimbing 1 sendiri"],
         ];
-        var state = { field: "nlp", t: 50, a: 25, s: 25, mode: "abdi" };
+        var state = { field: "nlp", t: 50, a: 25, s: 25, mode: "both" };
         var tips = {};
         var tipN = 0;
 
@@ -1552,7 +1551,7 @@
           $("presets").innerHTML = h;
         }
         function renderModes() {
-          var h = '<span class="lbl">Urutkan menurut</span>';
+          var h = '<span class="lbl">Tampilkan</span>';
           MODES.forEach(function (m) {
             h +=
               '<button class="mini" type="button" data-m="' +
@@ -1668,6 +1667,8 @@
             });
           });
           var key = state.mode === "solo" ? "solo" : "wa";
+          var showS = state.mode !== "abdi",
+            showA = state.mode !== "solo";
           list.sort(function (a, b) {
             return b[key] - a[key];
           });
@@ -1687,7 +1688,7 @@
               w.push(
                 "ada cerita sempro cepat lolos lalu dibantai penguji, jangan hanya mengandalkan akses mudah",
               );
-            if (abdi.fit[f][0] < 5)
+            if (showA && abdi.fit[f][0] < 5)
               w.push(
                 "Pak Abdi kurang cocok di bidang ini (skor topik " +
                   f1(abdi.fit[f][0]) +
@@ -1700,20 +1701,27 @@
               '</div><div class="mid"><b>' +
               x.p1.short +
               "</b>" +
-              '<div class="pb"><span>Sendiri</span><div class="tr"><i style="width:' +
-              x.solo * 10 +
-              '%;background:var(--s1)"></i></div><span class="v">' +
-              f1(x.solo) +
-              "</span></div>" +
-              '<div class="pb"><span>+ Pak Abdi</span><div class="tr"><i style="width:' +
-              x.wa * 10 +
-              '%;background:var(--s2)"></i></div><span class="v">' +
-              f1(x.wa) +
-              "</span></div></div>" +
-              '<div class="dl"><b>' +
-              (d >= 0 ? "+" : "") +
-              f1(d) +
-              "</b>selisih dengan Pak Abdi</div>" +
+              (showS
+                ? '<div class="pb"><span>Sendiri</span><div class="tr"><i style="width:' +
+                  x.solo * 10 +
+                  '%;background:var(--s1)"></i></div><span class="v">' +
+                  f1(x.solo) +
+                  "</span></div>"
+                : "") +
+              (showA
+                ? '<div class="pb"><span>+ Pak Abdi</span><div class="tr"><i style="width:' +
+                  x.wa * 10 +
+                  '%;background:var(--s2)"></i></div><span class="v">' +
+                  f1(x.wa) +
+                  "</span></div>"
+                : "") +
+              "</div>" +
+              (showS && showA
+                ? '<div class="dl"><b>' +
+                  (d >= 0 ? "+" : "") +
+                  f1(d) +
+                  "</b>selisih dengan Pak Abdi</div>"
+                : '<div class="dl"></div>') +
               '<div class="why"><span>Topik ' +
               f1(x.p1.fit[f][0]) +
               " · akses " +
