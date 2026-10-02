@@ -1,590 +1,1930 @@
 <!doctype html>
 <html lang="id">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Peta Dosen Pembimbing Unhas</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Peta Dosen Pembimbing Unhas</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-/* Layout: satu kolom lebar 1080px, panel bersudut siku bergaya konsol misi. Peringatan di paling atas, lalu pemilih bidang, grafik, kombinasi, profil. */
-:root{
-  --bg:#060a13; --panel:#0b1220; --panel2:#0f192c; --line:#1c2c48; --grid:rgba(72,217,255,.055);
-  --fg:#e7eefc; --fg2:#a2b3d0; --fg3:#7284a3;
-  --accent:#48d9ff; --accent-ink:#04202a;
-  --warn:#f5b83d; --warn-bg:rgba(245,184,61,.10); --warn-line:rgba(245,184,61,.55);
-  --ok:#3ddc97; --check:#f5b83d; --none:#ff7a7a;
-  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
-  --track:#14213a;
-  --f-display:'Chakra Petch','Segoe UI',system-ui,sans-serif;
-  --f-body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
-  --f-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
-  color-scheme:dark;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    --bg:#eef3fa; --panel:#ffffff; --panel2:#f4f7fc; --line:#c9d6ea; --grid:rgba(10,111,168,.07);
-    --fg:#0b1426; --fg2:#40526f; --fg3:#5f7091;
-    --accent:#0a6fa8; --accent-ink:#ffffff;
-    --warn:#7a4e00; --warn-bg:rgba(214,150,0,.12); --warn-line:rgba(160,105,0,.6);
-    --ok:#12804f; --check:#8a5a00; --none:#b42323;
-    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --track:#e3eaf6;
-    color-scheme:light;
-  }
-}
-:root[data-theme="light"]{
-  --bg:#eef3fa; --panel:#ffffff; --panel2:#f4f7fc; --line:#c9d6ea; --grid:rgba(10,111,168,.07);
-  --fg:#0b1426; --fg2:#40526f; --fg3:#5f7091;
-  --accent:#0a6fa8; --accent-ink:#ffffff;
-  --warn:#7a4e00; --warn-bg:rgba(214,150,0,.12); --warn-line:rgba(160,105,0,.6);
-  --ok:#12804f; --check:#8a5a00; --none:#b42323;
-  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --track:#e3eaf6;
-  color-scheme:light;
-}
-*{box-sizing:border-box}
-body{
-  background-color:var(--bg);
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:36px 36px;
-  color:var(--fg); font-family:var(--f-body); font-size:15px; line-height:1.6;
-  padding-inline:16px; padding-block:20px 56px; margin:0;
-}
-.wrap{width:100%;display:flex;flex-direction:column;gap:24px}
-.main{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);gap:24px;align-items:start}
-.aside{position:sticky;top:env(safe-area-inset-top,0px);margin-top:0}
-.results{display:flex;flex-direction:column;gap:24px;min-width:0}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:24px;align-items:start}
-@media (max-width:1000px){.main{grid-template-columns:minmax(0,1fr)}.aside{position:static}.sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px 22px}}
-h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;line-height:1.15}
-p{margin:0}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Layout: satu kolom lebar 1080px, panel bersudut siku bergaya konsol misi. Peringatan di paling atas, lalu pemilih bidang, grafik, kombinasi, profil. */
+      :root {
+        --bg: #060a13;
+        --panel: #0b1220;
+        --panel2: #0f192c;
+        --line: #1c2c48;
+        --grid: rgba(72, 217, 255, 0.055);
+        --fg: #e7eefc;
+        --fg2: #a2b3d0;
+        --fg3: #7284a3;
+        --accent: #48d9ff;
+        --accent-ink: #04202a;
+        --warn: #f5b83d;
+        --warn-bg: rgba(245, 184, 61, 0.1);
+        --warn-line: rgba(245, 184, 61, 0.55);
+        --ok: #3ddc97;
+        --check: #f5b83d;
+        --none: #ff7a7a;
+        --s1: #3987e5;
+        --s2: #d95926;
+        --s3: #199e70;
+        --track: #14213a;
+        --f-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+        --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+        --f-mono:
+          "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+        color-scheme: dark;
+      }
+      @media (prefers-color-scheme: light) {
+        :root:not([data-theme="dark"]) {
+          --bg: #eef3fa;
+          --panel: #ffffff;
+          --panel2: #f4f7fc;
+          --line: #c9d6ea;
+          --grid: rgba(10, 111, 168, 0.07);
+          --fg: #0b1426;
+          --fg2: #40526f;
+          --fg3: #5f7091;
+          --accent: #0a6fa8;
+          --accent-ink: #ffffff;
+          --warn: #7a4e00;
+          --warn-bg: rgba(214, 150, 0, 0.12);
+          --warn-line: rgba(160, 105, 0, 0.6);
+          --ok: #12804f;
+          --check: #8a5a00;
+          --none: #b42323;
+          --s1: #2a78d6;
+          --s2: #eb6834;
+          --s3: #1baf7a;
+          --track: #e3eaf6;
+          color-scheme: light;
+        }
+      }
+      :root[data-theme="light"] {
+        --bg: #eef3fa;
+        --panel: #ffffff;
+        --panel2: #f4f7fc;
+        --line: #c9d6ea;
+        --grid: rgba(10, 111, 168, 0.07);
+        --fg: #0b1426;
+        --fg2: #40526f;
+        --fg3: #5f7091;
+        --accent: #0a6fa8;
+        --accent-ink: #ffffff;
+        --warn: #7a4e00;
+        --warn-bg: rgba(214, 150, 0, 0.12);
+        --warn-line: rgba(160, 105, 0, 0.6);
+        --ok: #12804f;
+        --check: #8a5a00;
+        --none: #b42323;
+        --s1: #2a78d6;
+        --s2: #eb6834;
+        --s3: #1baf7a;
+        --track: #e3eaf6;
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: var(--bg);
+        background-image:
+          linear-gradient(var(--grid) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+        background-size: 36px 36px;
+        color: var(--fg);
+        font-family: var(--f-body);
+        font-size: 15px;
+        line-height: 1.6;
+        padding-inline: 16px;
+        padding-block: 20px 56px;
+        margin: 0;
+      }
+      .wrap {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .main {
+        display: grid;
+        grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+        gap: 24px;
+        align-items: start;
+      }
+      .aside {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        margin-top: 0;
+      }
+      .results {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+      }
+      .two {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr));
+        gap: 24px;
+        align-items: start;
+      }
+      @media (max-width: 1000px) {
+        .main {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .aside {
+          position: static;
+        }
+        .sliders {
+          display: grid;
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(100%, 220px), 1fr)
+          );
+          gap: 14px 22px;
+        }
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--f-display);
+        margin: 0;
+        text-wrap: balance;
+        line-height: 1.15;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        color: var(--accent);
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .mono {
+        font-family: var(--f-mono);
+        font-variant-numeric: tabular-nums;
+      }
+      .eyebrow {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
 
-/* Peringatan */
-.warn{
-  border:1px solid var(--warn-line);background:var(--warn-bg);padding:18px 20px;
-  display:grid;grid-template-columns:auto 1fr;gap:14px 18px;position:relative;
-}
-.warn-ic{
-  width:38px;height:38px;border:2px solid var(--warn);color:var(--warn);display:grid;place-items:center;
-  font-family:var(--f-display);font-weight:700;font-size:22px;transform:rotate(45deg);margin:6px 8px 0 6px;flex:none
-}
-.warn-ic span{transform:rotate(-45deg)}
-.warn h2{font-size:18px;color:var(--warn);letter-spacing:.04em;text-transform:uppercase}
-.warn p{color:var(--fg);margin-top:8px;max-width:78ch}
-.warn p strong{color:var(--warn)}
-.warn ul{margin:10px 0 0;padding-left:18px;color:var(--fg2);display:flex;flex-direction:column;gap:4px;max-width:78ch}
+      /* Peringatan */
+      .warn {
+        border: 1px solid var(--warn-line);
+        background: var(--warn-bg);
+        padding: 18px 20px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px 18px;
+        position: relative;
+      }
+      .warn-ic {
+        width: 38px;
+        height: 38px;
+        border: 2px solid var(--warn);
+        color: var(--warn);
+        display: grid;
+        place-items: center;
+        font-family: var(--f-display);
+        font-weight: 700;
+        font-size: 22px;
+        transform: rotate(45deg);
+        margin: 6px 8px 0 6px;
+        flex: none;
+      }
+      .warn-ic span {
+        transform: rotate(-45deg);
+      }
+      .warn h2 {
+        font-size: 18px;
+        color: var(--warn);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .warn p {
+        color: var(--fg);
+        margin-top: 8px;
+        max-width: 78ch;
+      }
+      .warn p strong {
+        color: var(--warn);
+      }
+      .warn ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+        color: var(--fg2);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-width: 78ch;
+      }
 
-/* Hero */
-.hero{display:flex;flex-direction:column;gap:12px;padding-block:6px}
-.hero h1{font-size:clamp(28px,5.4vw,50px);font-weight:700;letter-spacing:-.01em}
-.hero h1 b{color:var(--accent);font-weight:700}
-.hero p{color:var(--fg2);max-width:70ch}
-.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--f-mono);font-size:12px;color:var(--fg3)}
-.meta span::before{content:"";display:inline-block;width:7px;height:7px;background:var(--accent);margin-right:8px;border-radius:50%}
-@media (prefers-reduced-motion:no-preference){.meta span:first-child::before{animation:pulse 2.4s ease-in-out infinite}}
-@keyframes pulse{50%{opacity:.25}}
+      /* Hero */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding-block: 6px;
+      }
+      .hero h1 {
+        font-size: clamp(28px, 5.4vw, 50px);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .hero h1 b {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .hero p {
+        color: var(--fg2);
+        max-width: 70ch;
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        font-family: var(--f-mono);
+        font-size: 12px;
+        color: var(--fg3);
+      }
+      .meta span::before {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        background: var(--accent);
+        margin-right: 8px;
+        border-radius: 50%;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .meta span:first-child::before {
+          animation: pulse 2.4s ease-in-out infinite;
+        }
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.25;
+        }
+      }
 
-/* Panel */
-.panel{background:var(--panel);border:1px solid var(--line);padding:20px;position:relative;display:flex;flex-direction:column;gap:16px;min-width:0}
-.panel::before,.panel::after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--accent);pointer-events:none}
-.panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
-.panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
-.panel h2{font-size:22px;font-weight:600}
-.panel .lede{color:var(--fg2);max-width:75ch;font-size:14px}
+      /* Panel */
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 20px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-width: 0;
+      }
+      .panel::before,
+      .panel::after {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--accent);
+        pointer-events: none;
+      }
+      .panel::before {
+        top: -1px;
+        left: -1px;
+        border-right: 0;
+        border-bottom: 0;
+      }
+      .panel::after {
+        bottom: -1px;
+        right: -1px;
+        border-left: 0;
+        border-top: 0;
+      }
+      .panel h2 {
+        font-size: 22px;
+        font-weight: 600;
+      }
+      .panel .lede {
+        color: var(--fg2);
+        max-width: 75ch;
+        font-size: 14px;
+      }
 
-/* Aturan dasar */
-.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
-.rule{background:var(--panel2);border:1px solid var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
-.rule b{font-family:var(--f-display);font-size:15px}
-.rule span{color:var(--fg2);font-size:13px}
+      /* Aturan dasar */
+      .rules {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+        gap: 10px;
+      }
+      .rule {
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        padding: 12px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .rule b {
+        font-family: var(--f-display);
+        font-size: 15px;
+      }
+      .rule span {
+        color: var(--fg2);
+        font-size: 13px;
+      }
 
-/* Kontrol */
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{
-  font-family:var(--f-display);font-weight:500;font-size:14px;letter-spacing:.02em;
-  color:var(--fg2);background:transparent;border:1px solid var(--line);padding:8px 14px;cursor:pointer;
-  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
-}
-.chip:hover{color:var(--fg);border-color:var(--accent)}
-.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.sliders{display:flex;flex-direction:column;gap:14px}
-.sl{display:flex;flex-direction:column;gap:6px}
-.sl label{display:flex;justify-content:space-between;font-size:13px;color:var(--fg2)}
-.sl label b{font-family:var(--f-mono);color:var(--fg);font-weight:500}
-.sl .sw{display:inline-block;width:10px;height:10px;margin-right:8px}
-input[type=range]{width:100%;accent-color:var(--accent)}
-.presets{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.presets .lbl{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--fg3)}
-.mini{font-family:var(--f-mono);font-size:12px;color:var(--fg2);background:var(--panel2);border:1px solid var(--line);padding:5px 10px;cursor:pointer}
-.mini:hover{border-color:var(--accent);color:var(--fg)}
-.mini[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+      /* Kontrol */
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chip {
+        font-family: var(--f-display);
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.02em;
+        color: var(--fg2);
+        background: transparent;
+        border: 1px solid var(--line);
+        padding: 8px 14px;
+        cursor: pointer;
+        clip-path: polygon(
+          8px 0,
+          100% 0,
+          100% calc(100% - 8px),
+          calc(100% - 8px) 100%,
+          0 100%,
+          0 8px
+        );
+      }
+      .chip:hover {
+        color: var(--fg);
+        border-color: var(--accent);
+      }
+      .chip[aria-pressed="true"] {
+        background: var(--accent);
+        color: var(--accent-ink);
+        border-color: var(--accent);
+      }
+      .sliders {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .sl {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .sl label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--fg2);
+      }
+      .sl label b {
+        font-family: var(--f-mono);
+        color: var(--fg);
+        font-weight: 500;
+      }
+      .sl .sw {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 8px;
+      }
+      input[type="range"] {
+        width: 100%;
+        accent-color: var(--accent);
+      }
+      .presets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+      .presets .lbl {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--fg3);
+      }
+      .mini {
+        font-family: var(--f-mono);
+        font-size: 12px;
+        color: var(--fg2);
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      .mini:hover {
+        border-color: var(--accent);
+        color: var(--fg);
+      }
+      .mini[aria-pressed="true"] {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
 
-/* Legend + bars */
-.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--fg2)}
-.legend i{display:inline-block;width:11px;height:11px;margin-right:7px;vertical-align:-1px}
-.bars{display:flex;flex-direction:column;gap:9px}
-.brow{display:grid;grid-template-columns:150px 1fr 54px;gap:12px;align-items:center;cursor:default}
-.brow .nm{font-size:14px;display:flex;flex-direction:column;line-height:1.25;min-width:0}
-.brow .nm small{font-family:var(--f-mono);font-size:10.5px;color:var(--fg3);letter-spacing:.04em}
-.brow .tr{background:var(--track);height:20px;display:flex;overflow:hidden;border-radius:0 3px 3px 0}
-.brow .seg{height:100%;border-right:2px solid var(--panel);min-width:0}
-.brow .seg:last-child{border-right:0}
-.brow .v{font-family:var(--f-mono);font-size:14px;text-align:right}
-.brow:hover .nm,.brow:focus-within .nm{color:var(--accent)}
-.brow.top .v{color:var(--accent);font-weight:700}
-.badge{font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border:1px solid var(--line);color:var(--fg3);align-self:flex-start;margin-top:2px}
-.badge.p2{border-color:var(--s2);color:var(--s2)}
-@media (max-width:560px){.brow{grid-template-columns:104px 1fr 44px;gap:8px}.brow .nm{font-size:13px}}
+      /* Legend + bars */
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 18px;
+        font-size: 13px;
+        color: var(--fg2);
+      }
+      .legend i {
+        display: inline-block;
+        width: 11px;
+        height: 11px;
+        margin-right: 7px;
+        vertical-align: -1px;
+      }
+      .bars {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .brow {
+        display: grid;
+        grid-template-columns: 150px 1fr 54px;
+        gap: 12px;
+        align-items: center;
+        cursor: default;
+      }
+      .brow .nm {
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+        min-width: 0;
+      }
+      .brow .nm small {
+        font-family: var(--f-mono);
+        font-size: 10.5px;
+        color: var(--fg3);
+        letter-spacing: 0.04em;
+      }
+      .brow .tr {
+        background: var(--track);
+        height: 20px;
+        display: flex;
+        overflow: hidden;
+        border-radius: 0 3px 3px 0;
+      }
+      .brow .seg {
+        height: 100%;
+        border-right: 2px solid var(--panel);
+        min-width: 0;
+      }
+      .brow .seg:last-child {
+        border-right: 0;
+      }
+      .brow .v {
+        font-family: var(--f-mono);
+        font-size: 14px;
+        text-align: right;
+      }
+      .brow:hover .nm,
+      .brow:focus-within .nm {
+        color: var(--accent);
+      }
+      .brow.top .v {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .badge {
+        font-family: var(--f-mono);
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 1px 6px;
+        border: 1px solid var(--line);
+        color: var(--fg3);
+        align-self: flex-start;
+        margin-top: 2px;
+      }
+      .badge.p2 {
+        border-color: var(--s2);
+        color: var(--s2);
+      }
+      @media (max-width: 560px) {
+        .brow {
+          grid-template-columns: 104px 1fr 44px;
+          gap: 8px;
+        }
+        .brow .nm {
+          font-size: 13px;
+        }
+      }
 
-/* Kombinasi: satu pembimbing 1, dengan atau tanpa Pak Abdi */
-.prow{display:grid;grid-template-columns:34px minmax(0,1fr) 120px;gap:12px 14px;align-items:start;padding:14px 0;border-top:1px solid var(--line)}
-.prow:first-child{border-top:0}
-.prow .rk{font-family:var(--f-mono);color:var(--fg3);font-size:13px;padding-top:2px}
-.prow .mid{display:flex;flex-direction:column;gap:7px;min-width:0}
-.prow .mid>b{font-family:var(--f-display);font-weight:600;font-size:17px}
-.pb{display:grid;grid-template-columns:96px 1fr 40px;gap:10px;align-items:center;font-size:12.5px;color:var(--fg2)}
-.pb .tr{background:var(--track);height:12px;border-radius:0 3px 3px 0}
-.pb .tr i{display:block;height:100%;border-radius:0 3px 3px 0}
-.pb .v{font-family:var(--f-mono);text-align:right;color:var(--fg)}
-.prow .why{grid-column:2 / 4;color:var(--fg2);font-size:13px;display:flex;flex-direction:column;gap:3px}
-.prow .why .w{color:var(--warn)}
-.prow .dl{font-family:var(--f-mono);font-size:13px;text-align:right;color:var(--fg2);padding-top:2px}
-.prow .dl b{display:block;font-size:17px;color:var(--fg);font-weight:500}
-.prow:first-child .dl b{color:var(--accent);font-weight:700}
-@media (max-width:620px){.prow{grid-template-columns:26px minmax(0,1fr)}.prow .dl{grid-column:2;text-align:left}.prow .why{grid-column:2}.pb{grid-template-columns:84px 1fr 36px}}
+      /* Kombinasi: satu pembimbing 1, dengan atau tanpa Pak Abdi */
+      .prow {
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr) 120px;
+        gap: 12px 14px;
+        align-items: start;
+        padding: 14px 0;
+        border-top: 1px solid var(--line);
+      }
+      .prow:first-child {
+        border-top: 0;
+      }
+      .prow .rk {
+        font-family: var(--f-mono);
+        color: var(--fg3);
+        font-size: 13px;
+        padding-top: 2px;
+      }
+      .prow .mid {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        min-width: 0;
+      }
+      .prow .mid > b {
+        font-family: var(--f-display);
+        font-weight: 600;
+        font-size: 17px;
+      }
+      .pb {
+        display: grid;
+        grid-template-columns: 96px 1fr 40px;
+        gap: 10px;
+        align-items: center;
+        font-size: 12.5px;
+        color: var(--fg2);
+      }
+      .pb .tr {
+        background: var(--track);
+        height: 12px;
+        border-radius: 0 3px 3px 0;
+      }
+      .pb .tr i {
+        display: block;
+        height: 100%;
+        border-radius: 0 3px 3px 0;
+      }
+      .pb .v {
+        font-family: var(--f-mono);
+        text-align: right;
+        color: var(--fg);
+      }
+      .prow .why {
+        grid-column: 2 / 4;
+        color: var(--fg2);
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .prow .why .w {
+        color: var(--warn);
+      }
+      .prow .dl {
+        font-family: var(--f-mono);
+        font-size: 13px;
+        text-align: right;
+        color: var(--fg2);
+        padding-top: 2px;
+      }
+      .prow .dl b {
+        display: block;
+        font-size: 17px;
+        color: var(--fg);
+        font-weight: 500;
+      }
+      .prow:first-child .dl b {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      @media (max-width: 620px) {
+        .prow {
+          grid-template-columns: 26px minmax(0, 1fr);
+        }
+        .prow .dl {
+          grid-column: 2;
+          text-align: left;
+        }
+        .prow .why {
+          grid-column: 2;
+        }
+        .pb {
+          grid-template-columns: 84px 1fr 36px;
+        }
+      }
 
-/* Kartu dosen */
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:14px}
-.card{background:var(--panel2);border:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.card h3{font-size:17px;font-weight:600}
-.card .jab{font-family:var(--f-mono);font-size:11px;color:var(--fg3);letter-spacing:.04em}
-.st{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;display:inline-flex;gap:6px;align-items:center;align-self:flex-start;border:1px solid currentColor;padding:2px 8px}
-.st.ok{color:var(--ok)} .st.check{color:var(--check)} .st.none{color:var(--none)}
-.met{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.met div{background:var(--panel);border:1px solid var(--line);padding:6px 8px;display:flex;flex-direction:column}
-.met b{font-family:var(--f-mono);font-size:16px;font-weight:500}
-.met span{font-size:10.5px;color:var(--fg3);letter-spacing:.06em;text-transform:uppercase;font-family:var(--f-mono)}
-.card dl{margin:0;display:flex;flex-direction:column;gap:8px}
-.card dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.card dd{margin:2px 0 0;color:var(--fg2);font-size:13.5px}
-.card .src{font-size:12px;margin-top:auto}
+      /* Kartu dosen */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+        gap: 14px;
+      }
+      .card {
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+      }
+      .card h3 {
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .card .jab {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        color: var(--fg3);
+        letter-spacing: 0.04em;
+      }
+      .st {
+        font-family: var(--f-mono);
+        font-size: 10.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        align-self: flex-start;
+        border: 1px solid currentColor;
+        padding: 2px 8px;
+      }
+      .st.ok {
+        color: var(--ok);
+      }
+      .st.check {
+        color: var(--check);
+      }
+      .st.none {
+        color: var(--none);
+      }
+      .met {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      .met div {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 6px 8px;
+        display: flex;
+        flex-direction: column;
+      }
+      .met b {
+        font-family: var(--f-mono);
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .met span {
+        font-size: 10.5px;
+        color: var(--fg3);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-family: var(--f-mono);
+      }
+      .card dl {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .card dt {
+        font-family: var(--f-mono);
+        font-size: 10.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .card dd {
+        margin: 2px 0 0;
+        color: var(--fg2);
+        font-size: 13.5px;
+      }
+      .card .src {
+        font-size: 12px;
+        margin-top: auto;
+      }
 
-/* h-index */
-.hrow{display:grid;grid-template-columns:150px 1fr 40px;gap:12px;align-items:center}
-.hrow .tr{background:var(--track);height:14px;border-radius:0 3px 3px 0}
-.hrow .tr i{display:block;height:100%;background:var(--s1);border-radius:0 3px 3px 0}
-.hrow small{font-family:var(--f-mono);color:var(--fg3);font-size:10.5px}
-.hrow .v{font-family:var(--f-mono);text-align:right}
-@media (max-width:560px){.hrow{grid-template-columns:104px 1fr 32px}}
+      /* h-index */
+      .hrow {
+        display: grid;
+        grid-template-columns: 150px 1fr 40px;
+        gap: 12px;
+        align-items: center;
+      }
+      .hrow .tr {
+        background: var(--track);
+        height: 14px;
+        border-radius: 0 3px 3px 0;
+      }
+      .hrow .tr i {
+        display: block;
+        height: 100%;
+        background: var(--s1);
+        border-radius: 0 3px 3px 0;
+      }
+      .hrow small {
+        font-family: var(--f-mono);
+        color: var(--fg3);
+        font-size: 10.5px;
+      }
+      .hrow .v {
+        font-family: var(--f-mono);
+        text-align: right;
+      }
+      @media (max-width: 560px) {
+        .hrow {
+          grid-template-columns: 104px 1fr 32px;
+        }
+      }
 
-/* Tabel */
-details{border:1px solid var(--line);background:var(--panel2);padding:10px 14px}
-summary{cursor:pointer;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg2)}
-.tw{overflow-x:auto;margin-top:10px}
-table{border-collapse:collapse;width:100%;font-size:13px;min-width:520px}
-th,td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:left}
-th{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg3);font-weight:500}
-td.n{font-family:var(--f-mono);text-align:right}
+      /* Tabel */
+      details {
+        border: 1px solid var(--line);
+        background: var(--panel2);
+        padding: 10px 14px;
+      }
+      summary {
+        cursor: pointer;
+        font-family: var(--f-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--fg2);
+      }
+      .tw {
+        overflow-x: auto;
+        margin-top: 10px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 13px;
+        min-width: 520px;
+      }
+      th,
+      td {
+        padding: 6px 10px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+      }
+      th {
+        font-family: var(--f-mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--fg3);
+        font-weight: 500;
+      }
+      td.n {
+        font-family: var(--f-mono);
+        text-align: right;
+      }
 
-/* Metode */
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:18px}
-.cols h3{font-size:16px;margin-bottom:6px;color:var(--accent)}
-.cols ul{margin:0;padding-left:18px;color:var(--fg2);font-size:13.5px;display:flex;flex-direction:column;gap:5px}
-.srcs{font-size:13px;color:var(--fg2);display:flex;flex-wrap:wrap;gap:4px 16px}
-.foot{font-family:var(--f-mono);font-size:11.5px;color:var(--fg3);border-top:1px solid var(--line);padding-top:14px}
+      /* Metode */
+      .cols {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+        gap: 18px;
+      }
+      .cols h3 {
+        font-size: 16px;
+        margin-bottom: 6px;
+        color: var(--accent);
+      }
+      .cols ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--fg2);
+        font-size: 13.5px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .srcs {
+        font-size: 13px;
+        color: var(--fg2);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 16px;
+      }
+      .foot {
+        font-family: var(--f-mono);
+        font-size: 11.5px;
+        color: var(--fg3);
+        border-top: 1px solid var(--line);
+        padding-top: 14px;
+      }
 
-/* Tooltip */
-#tip{position:fixed;z-index:50;pointer-events:none;background:var(--panel);color:var(--fg);border:1px solid var(--accent);padding:10px 12px;font-size:12.5px;max-width:300px;box-shadow:0 8px 28px rgba(0,0,0,.35);display:none;line-height:1.5}
-#tip b{font-family:var(--f-display);font-size:14px}
-#tip .r{display:flex;justify-content:space-between;gap:16px;font-family:var(--f-mono)}
-#tip .r i{display:inline-block;width:9px;height:9px;margin-right:7px}
-#tip .nt{color:var(--fg3);margin-top:4px}
-</style>
-</head>
-<body>
+      /* Tooltip */
+      #tip {
+        position: fixed;
+        z-index: 50;
+        pointer-events: none;
+        background: var(--panel);
+        color: var(--fg);
+        border: 1px solid var(--accent);
+        padding: 10px 12px;
+        font-size: 12.5px;
+        max-width: 300px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+        display: none;
+        line-height: 1.5;
+      }
+      #tip b {
+        font-family: var(--f-display);
+        font-size: 14px;
+      }
+      #tip .r {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-family: var(--f-mono);
+      }
+      #tip .r i {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        margin-right: 7px;
+      }
+      #tip .nt {
+        color: var(--fg3);
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="warn" role="note" aria-label="Peringatan penting">
+        <div class="warn-ic" aria-hidden="true"><span>!</span></div>
+        <div>
+          <h2>Baca dulu: ini bukan penilaian objektif</h2>
+          <p>
+            Halaman ini murni hasil pencarian latar belakang dosen di web
+            ditambah <strong>pengalaman beberapa orang</strong>. Skor di sini
+            adalah penilaian editorial yang bisa dihitung ulang dengan bobot
+            Anda sendiri. Angka tersebut tidak mengukur kualitas dosen.
+          </p>
+          <p>
+            <strong>Tetap datangi dosennya langsung</strong> sebelum memutuskan.
+            Tanyakan topik apa yang sedang mereka bimbing, kuota, dan ekspektasi
+            mereka terhadap mahasiswa bimbingan.
+          </p>
+          <ul>
+            <li>
+              Sebagian profil publik tidak lengkap atau tidak bisa dibaca, dan
+              ditandai di setiap kartu dosen.
+            </li>
+            <li>
+              Pengalaman mahasiswa bersifat subjektif, sampelnya kecil, dan bisa
+              sudah berubah.
+            </li>
+          </ul>
+        </div>
+      </section>
 
+      <header class="hero">
+        <div class="eyebrow">Magister Informatika · Universitas Hasanuddin</div>
+        <h1>Peta dosen pembimbing, <b>per bidang tesis</b></h1>
+        <p>
+          Pilih bidang, atur seberapa penting kecocokan topik, kemudahan
+          ditemui, dan kesiapan sempro. Peringkat calon pembimbing 1, serta
+          skornya bila ditambah Pak Abdi sebagai pembimbing 2, dihitung ulang
+          saat itu juga.
+        </p>
+        <div class="meta">
+          <span>Data dicek 2 Okt 2026</span><span>10 dosen dinilai</span
+          ><span>6 bidang</span>
+        </div>
+      </header>
 
-<div class="wrap">
+      <section class="rules" aria-label="Aturan dasar">
+        <div class="rule">
+          <b>Bu Ingrid tidak dihitung</b
+          ><span
+            >Tidak bisa menjadi pembimbing karena masa jabatannya sudah
+            lewat.</span
+          >
+        </div>
+        <div class="rule">
+          <b>Pak Abdi hanya pembimbing 2</b
+          ><span>Tidak bisa menjadi pembimbing 1.</span>
+        </div>
+        <div class="rule">
+          <b>Dua skenario di halaman ini</b
+          ><span
+            >Satu pembimbing saja, atau satu pembimbing 1 ditambah Pak Abdi
+            sebagai pembimbing 2.</span
+          >
+        </div>
+      </section>
 
-<section class="warn" role="note" aria-label="Peringatan penting">
-  <div class="warn-ic" aria-hidden="true"><span>!</span></div>
-  <div>
-    <h2>Baca dulu: ini bukan penilaian objektif</h2>
-    <p>Halaman ini murni hasil pencarian latar belakang dosen di web ditambah <strong>pengalaman beberapa orang</strong>. Skor di sini adalah penilaian editorial yang bisa dihitung ulang dengan bobot Anda sendiri. Angka tersebut tidak mengukur kualitas dosen.</p>
-    <p><strong>Tetap datangi dosennya langsung</strong> sebelum memutuskan. Tanyakan topik apa yang sedang mereka bimbing, kuota, dan ekspektasi mereka terhadap mahasiswa bimbingan.</p>
-    <ul>
-      <li>Sebagian profil publik tidak lengkap atau tidak bisa dibaca, dan ditandai di setiap kartu dosen.</li>
-      <li>Pengalaman mahasiswa bersifat subjektif, sampelnya kecil, dan bisa sudah berubah.</li>
-    </ul>
-  </div>
-</section>
+      <div class="main">
+        <aside class="panel aside" aria-labelledby="h-pilih">
+          <div class="eyebrow">Langkah 1</div>
+          <h2 id="h-pilih">Pilih bidang dan atur bobot</h2>
+          <div
+            class="chips"
+            id="fields"
+            role="group"
+            aria-label="Bidang tesis"
+          ></div>
+          <div class="sliders">
+            <div class="sl">
+              <label for="wT"
+                ><span
+                  ><i class="sw" style="background: var(--s1)"></i>Kecocokan
+                  topik</span
+                ><b id="vT">50</b></label
+              ><input
+                id="wT"
+                type="range"
+                min="0"
+                max="100"
+                step="5"
+                value="50"
+              />
+            </div>
+            <div class="sl">
+              <label for="wA"
+                ><span
+                  ><i class="sw" style="background: var(--s2)"></i>Mudah
+                  ditemui</span
+                ><b id="vA">25</b></label
+              ><input
+                id="wA"
+                type="range"
+                min="0"
+                max="100"
+                step="5"
+                value="25"
+              />
+            </div>
+            <div class="sl">
+              <label for="wS"
+                ><span
+                  ><i class="sw" style="background: var(--s3)"></i>Kesiapan
+                  sempro</span
+                ><b id="vS">25</b></label
+              ><input
+                id="wS"
+                type="range"
+                min="0"
+                max="100"
+                step="5"
+                value="25"
+              />
+            </div>
+          </div>
+          <div class="presets" id="presets">
+            <span class="lbl">Preset bobot</span>
+          </div>
+        </aside>
 
-<header class="hero">
-  <div class="eyebrow">Magister Informatika · Universitas Hasanuddin</div>
-  <h1>Peta dosen pembimbing, <b>per bidang tesis</b></h1>
-  <p>Pilih bidang, atur seberapa penting kecocokan topik, kemudahan ditemui, dan kesiapan sempro. Peringkat calon pembimbing 1, serta skornya bila ditambah Pak Abdi sebagai pembimbing 2, dihitung ulang saat itu juga.</p>
-  <div class="meta"><span>Data dicek 2 Okt 2026</span><span>10 dosen dinilai</span><span>6 bidang</span></div>
-</header>
+        <div class="results">
+          <section class="panel" aria-labelledby="h-rank">
+            <div class="eyebrow">Langkah 2 · calon pembimbing 1</div>
+            <h2 id="h-rank">
+              Peringkat dosen untuk
+              <span id="fname" style="color: var(--accent)"></span>
+            </h2>
+            <p class="lede">
+              Setiap batang adalah skor 0 sampai 10 yang dipecah menjadi tiga
+              komponen sesuai bobot. Arahkan kursor atau ketuk batang untuk
+              melihat rinciannya.
+            </p>
+            <div class="legend" aria-label="Legenda">
+              <span><i style="background: var(--s1)"></i>Kecocokan topik</span>
+              <span><i style="background: var(--s2)"></i>Mudah ditemui</span>
+              <span><i style="background: var(--s3)"></i>Kesiapan sempro</span>
+            </div>
+            <div class="bars" id="bars"></div>
+            <details>
+              <summary>Lihat sebagai tabel</summary>
+              <div class="tw"><table id="tbl"></table></div>
+            </details>
+          </section>
+        </div>
+      </div>
 
-<section class="rules" aria-label="Aturan dasar">
-  <div class="rule"><b>Bu Ingrid tidak dihitung</b><span>Tidak bisa menjadi pembimbing karena masa jabatannya sudah lewat.</span></div>
-  <div class="rule"><b>Pak Abdi hanya pembimbing 2</b><span>Tidak bisa menjadi pembimbing 1.</span></div>
-  <div class="rule"><b>Dua skenario di halaman ini</b><span>Satu pembimbing saja, atau satu pembimbing 1 ditambah Pak Abdi sebagai pembimbing 2.</span></div>
-</section>
+      <section class="panel" aria-labelledby="h-combo">
+        <div class="eyebrow">
+          Langkah 3 · satu pembimbing atau ditambah Pak Abdi
+        </div>
+        <h2 id="h-combo">
+          Pembimbing 1 untuk
+          <span id="fname2" style="color: var(--accent)"></span>
+        </h2>
+        <p class="lede">
+          Skor "dengan Pak Abdi" = 65% skor pembimbing 1 + 35% skor Pak Abdi,
+          ditambah bonus sampai 0,5 bila Pak Abdi lebih mudah ditemui. Skor
+          "sendiri" = skor pembimbing 1 dikurangi 0,4 karena tidak ada cadangan.
+        </p>
+        <div class="legend" aria-label="Legenda kombinasi">
+          <span><i style="background: var(--s1)"></i>Pembimbing 1 sendiri</span>
+          <span
+            ><i style="background: var(--s2)"></i>Dengan Pak Abdi sebagai
+            pembimbing 2</span
+          >
+        </div>
+        <div class="presets" id="modes">
+          <span class="lbl">Urutkan menurut</span>
+        </div>
+        <div id="combos"></div>
+      </section>
 
-<div class="main">
-<aside class="panel aside" aria-labelledby="h-pilih">
-  <div class="eyebrow">Langkah 1</div>
-  <h2 id="h-pilih">Pilih bidang dan atur bobot</h2>
-  <div class="chips" id="fields" role="group" aria-label="Bidang tesis"></div>
-  <div class="sliders">
-    <div class="sl"><label for="wT"><span><i class="sw" style="background:var(--s1)"></i>Kecocokan topik</span><b id="vT">50</b></label><input id="wT" type="range" min="0" max="100" step="5" value="50"></div>
-    <div class="sl"><label for="wA"><span><i class="sw" style="background:var(--s2)"></i>Mudah ditemui</span><b id="vA">25</b></label><input id="wA" type="range" min="0" max="100" step="5" value="25"></div>
-    <div class="sl"><label for="wS"><span><i class="sw" style="background:var(--s3)"></i>Kesiapan sempro</span><b id="vS">25</b></label><input id="wS" type="range" min="0" max="100" step="5" value="25"></div>
-  </div>
-  <div class="presets" id="presets"><span class="lbl">Preset bobot</span></div>
-</aside>
+      <section class="panel" aria-labelledby="h-prof">
+        <div class="eyebrow">Latar belakang</div>
+        <h2 id="h-prof">Profil 10 dosen</h2>
+        <p class="lede">
+          Angka publikasi diambil dari profil peneliti Unhas (Pak Abdi dari
+          Scopus) dan bisa berbeda dengan Scopus atau Google Scholar langsung.
+          Bagian pengalaman berasal dari cerita mahasiswa, bukan dari data.
+        </p>
+        <div class="cards" id="cards"></div>
+      </section>
 
-<div class="results">
-<section class="panel" aria-labelledby="h-rank">
-  <div class="eyebrow">Langkah 2 · calon pembimbing 1</div>
-  <h2 id="h-rank">Peringkat dosen untuk <span id="fname" style="color:var(--accent)"></span></h2>
-  <p class="lede">Setiap batang adalah skor 0 sampai 10 yang dipecah menjadi tiga komponen sesuai bobot. Arahkan kursor atau ketuk batang untuk melihat rinciannya.</p>
-  <div class="legend" aria-label="Legenda">
-    <span><i style="background:var(--s1)"></i>Kecocokan topik</span>
-    <span><i style="background:var(--s2)"></i>Mudah ditemui</span>
-    <span><i style="background:var(--s3)"></i>Kesiapan sempro</span>
-  </div>
-  <div class="bars" id="bars"></div>
-  <details><summary>Lihat sebagai tabel</summary><div class="tw"><table id="tbl"></table></div></details>
-</section>
-</div>
-</div>
+      <div class="two">
+        <section class="panel" aria-labelledby="h-h">
+          <div class="eyebrow">Bibliometrik</div>
+          <h2 id="h-h">h-index menurut profil yang terbaca</h2>
+          <p class="lede">
+            Jangan dipakai sebagai peringkat kualitas. Angka ini bergantung pada
+            lama berkarier, bidang, dan basis data yang berbeda (sebagian dari
+            Unhas Discover, sebagian dari Unhas Scholar yang memakai Scopus).
+          </p>
+          <div class="bars" id="hbars"></div>
+        </section>
 
-<section class="panel" aria-labelledby="h-combo">
-  <div class="eyebrow">Langkah 3 · satu pembimbing atau ditambah Pak Abdi</div>
-  <h2 id="h-combo">Pembimbing 1 untuk <span id="fname2" style="color:var(--accent)"></span></h2>
-  <p class="lede">Skor "dengan Pak Abdi" = 65% skor pembimbing 1 + 35% skor Pak Abdi, ditambah bonus sampai 0,5 bila Pak Abdi lebih mudah ditemui. Skor "sendiri" = skor pembimbing 1 dikurangi 0,4 karena tidak ada cadangan.</p>
-  <div class="legend" aria-label="Legenda kombinasi">
-    <span><i style="background:var(--s1)"></i>Pembimbing 1 sendiri</span>
-    <span><i style="background:var(--s2)"></i>Dengan Pak Abdi sebagai pembimbing 2</span>
-  </div>
-  <div class="presets" id="modes"><span class="lbl">Urutkan menurut</span></div>
-  <div id="combos"></div>
-</section>
-
-<section class="panel" aria-labelledby="h-prof">
-  <div class="eyebrow">Latar belakang</div>
-  <h2 id="h-prof">Profil 10 dosen</h2>
-  <p class="lede">Angka publikasi diambil dari profil peneliti Unhas (Pak Abdi dari Scopus) dan bisa berbeda dengan Scopus atau Google Scholar langsung. Bagian pengalaman berasal dari cerita mahasiswa, bukan dari data.</p>
-  <div class="cards" id="cards"></div>
-</section>
-
-<div class="two">
-<section class="panel" aria-labelledby="h-h">
-  <div class="eyebrow">Bibliometrik</div>
-  <h2 id="h-h">h-index menurut profil yang terbaca</h2>
-  <p class="lede">Jangan dipakai sebagai peringkat kualitas. Angka ini bergantung pada lama berkarier, bidang, dan basis data yang berbeda (sebagian dari Unhas Discover, sebagian dari Unhas Scholar yang memakai Scopus).</p>
-  <div class="bars" id="hbars"></div>
-</section>
-
-<section class="panel" aria-labelledby="h-met">
-  <div class="eyebrow">Metode dan batasan</div>
-  <h2 id="h-met">Cara skor dihitung</h2>
-  <div class="cols">
-    <div>
-      <h3>Kecocokan topik (0 sampai 10)</h3>
-      <ul>
-        <li>Dinilai dari bidang riset dan judul publikasi terbaru di profil Unhas.</li>
-        <li>Tanda "inferensi" di tooltip berarti skor ditebak dari bidang umum karena tidak ada publikasi yang jelas pada topik itu.</li>
-        <li>Pak Kiki belum terverifikasi penuh (nama panggilan diasumsikan), jadi skornya lebih rapuh. Data Pak Abdi berasal dari tangkapan layar Google Scholar dan Scopus yang dikirim pemilik halaman ini.</li>
-      </ul>
+        <section class="panel" aria-labelledby="h-met">
+          <div class="eyebrow">Metode dan batasan</div>
+          <h2 id="h-met">Cara skor dihitung</h2>
+          <div class="cols">
+            <div>
+              <h3>Kecocokan topik (0 sampai 10)</h3>
+              <ul>
+                <li>
+                  Dinilai dari bidang riset dan judul publikasi terbaru di
+                  profil Unhas.
+                </li>
+                <li>
+                  Tanda "inferensi" di tooltip berarti skor ditebak dari bidang
+                  umum karena tidak ada publikasi yang jelas pada topik itu.
+                </li>
+                <li>
+                  Pak Kiki belum terverifikasi penuh (nama panggilan
+                  diasumsikan), jadi skornya lebih rapuh. Data Pak Abdi berasal
+                  dari tangkapan layar Google Scholar dan Scopus yang dikirim
+                  pemilik halaman ini.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>Mudah ditemui dan sempro (0 sampai 10)</h3>
+              <ul>
+                <li>
+                  Murni dari pengalaman mahasiswa, tidak ada data pendukung.
+                </li>
+                <li>
+                  Dosen tanpa cerita pengalaman diberi nilai tengah (6) dan
+                  ditandai. Skor sempro terendah dibatasi 5.
+                </li>
+                <li>
+                  Prof Indrabayu diberi skor akses 7 karena beliau sering ada di
+                  lab, dengan syarat mahasiswa bimbingan juga hadir di lab.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>Hal yang tidak diukur</h3>
+              <ul>
+                <li>Kuota bimbingan dan jadwal cuti tiap semester.</li>
+                <li>Kecocokan gaya kerja Anda dengan gaya bimbingan.</li>
+                <li>
+                  Pengetahuan tentang topik spesifik tesis Anda. Hanya bisa
+                  dijawab lewat pertemuan langsung.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="eyebrow">Sumber</div>
+          <div class="srcs" id="srcs"></div>
+          <div class="foot">
+            Sekali lagi: ini bukan penilaian objektif. Datanglah langsung ke
+            dosen sebelum memutuskan.
+          </div>
+        </section>
+      </div>
     </div>
-    <div>
-      <h3>Mudah ditemui dan sempro (0 sampai 10)</h3>
-      <ul>
-        <li>Murni dari pengalaman mahasiswa, tidak ada data pendukung.</li>
-        <li>Dosen tanpa cerita pengalaman diberi nilai tengah (5) dan ditandai.</li>
-        <li>Prof Indrabayu diberi skor akses rendah karena syarat hadir di lab setiap hari, bukan karena sulit dihubungi.</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Hal yang tidak diukur</h3>
-      <ul>
-        <li>Kuota bimbingan dan jadwal cuti tiap semester.</li>
-        <li>Kecocokan gaya kerja Anda dengan gaya bimbingan.</li>
-        <li>Pengetahuan tentang topik spesifik tesis Anda. Hanya bisa dijawab lewat pertemuan langsung.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="eyebrow">Sumber</div>
-  <div class="srcs" id="srcs"></div>
-  <div class="foot">Sekali lagi: ini bukan penilaian objektif. Datanglah langsung ke dosen sebelum memutuskan.</div>
-</section>
-</div>
+    <div id="tip" role="tooltip"></div>
 
-</div>
-<div id="tip" role="tooltip"></div>
+    <script>
+      (function () {
+        var FIELDS = {
+          dl: "Deep learning & computer vision",
+          nlp: "NLP & data mining",
+          iot: "IoT & edge computing",
+          sec: "Keamanan siber, blockchain & jaringan",
+          sys: "Komputasi paralel, sistem & web",
+          sim: "Pemodelan, simulasi & game",
+        };
+        var DOSEN = [
+          {
+            id: "indrabayu",
+            short: "Prof Indrabayu",
+            nama: "Prof. Dr. Ir. Indrabayu, ST., MT., M.Bus.Sys., IPM",
+            jab: "Professor",
+            p2only: false,
+            access: 7,
+            sempro: 9.5,
+            ex: true,
+            fit: {
+              dl: [9.5, 1],
+              nlp: [6, 0],
+              iot: [3, 0],
+              sec: [3, 0],
+              sys: [3, 0],
+              sim: [3, 0],
+            },
+            st: ["ok", "Profil terbaca"],
+            pub: 144,
+            cit: 661,
+            h: 13,
+            hsrc: "Discover",
+            bidang:
+              "Ilmu komputer 100%, AI 88%, computer vision 51%. Kuartil: 1 Top 10%, 2 Q1, 11 Q2, 15 Q3, 23 Q4.",
+            topik:
+              "Klasifikasi hasil pertanian, deteksi jalur dan slot parkir untuk kendaraan otonom, lokalisasi 3D stereo, klasifikasi sampah dengan model vision-language.",
+            pengalaman:
+              "Paling kritis dan tegas, perfeksionis. Anak bimbingan umumnya berhasil menjawab semua pertanyaan sempro. Wajib hadir di lab, tetapi beliau juga sering ada di lab sehingga cukup mudah ditemui di sana.",
+            link: [
+              "https://discover.unhas.ac.id/researchers/indrabayu",
+              "Unhas Discover",
+            ],
+          },
+          {
+            id: "zahir",
+            short: "Prof Zahir",
+            nama: "Prof. Dr. Zahir Zainuddin, M.Sc.",
+            jab: "Ketua Program Magister",
+            p2only: false,
+            access: 8,
+            sempro: 5,
+            ex: true,
+            fit: {
+              dl: [9, 1],
+              nlp: [4.5, 0],
+              iot: [5, 1],
+              sec: [2.5, 0],
+              sys: [5, 1],
+              sim: [3, 0],
+            },
+            st: ["ok", "Profil terbaca"],
+            pub: 107,
+            cit: 449,
+            h: 10,
+            hsrc: "Unhas Scholar",
+            bidang:
+              "Sidik jari riset di Unhas Scholar: CNN 100%, pengenalan wajah 62%, deep learning 39%, juga LSTM dan ekstraksi fitur. Di Unhas Discover: AI, pengenalan pola, pemrosesan citra.",
+            topik:
+              "Pengenalan ekspresi matematika tulisan tangan (CNN, EfficientNetB0), citra medis (rontgen dada, Alzheimer), klasifikasi kata karate (CNN+LSTM), jaringan sensor nirkabel dan IoT, rekonstruksi video paralel, klasifikasi curah hujan dengan penyeimbangan data, deteksi jalur dengan U-Net.",
+            pengalaman:
+              "Sangat baik, ramah, mudah ditemui. Kadang terlalu cepat meloloskan sempro, sehingga banyak anak bimbingan yang dibantai penguji. Penyebabnya belum jelas: mahasiswa atau kurang detail.",
+            link: [
+              "https://discover.unhas.ac.id/researchers/zahir-zainuddin",
+              "Unhas Discover",
+            ],
+          },
+          {
+            id: "amil",
+            short: "Prof Amil",
+            nama: "Prof. Dr. Ir. Amil Ahmad Ilham, S.T., M.IT",
+            jab: "Professor",
+            p2only: false,
+            access: 5,
+            sempro: 8,
+            ex: true,
+            fit: {
+              dl: [7, 1],
+              nlp: [8.5, 1],
+              iot: [2.5, 0],
+              sec: [2.5, 0],
+              sys: [3, 0],
+              sim: [3, 0],
+            },
+            st: ["ok", "Profil terbaca"],
+            pub: 100,
+            cit: 478,
+            h: 11,
+            hsrc: "Discover",
+            bidang:
+              "AI 60%, engineering 29%, computer vision 16%. Kuartil: 8 Q2, 12 Q3, 16 Q4.",
+            topik:
+              "Ekstraksi fitur morfologi dengan NLP, model deep learning berbasis transformer BERT, encoder teks transformer untuk semantik visual Indonesia, deteksi emosi dengan VGG16, deteksi dan pelacakan kendaraan dengan YOLO.",
+            pengalaman: "Sangat baik dan teliti, tetapi terkadang sibuk.",
+            link: [
+              "https://discover.unhas.ac.id/researchers/amil-ahmad-ilham",
+              "Unhas Discover",
+            ],
+          },
+          {
+            id: "novy",
+            short: "Bu Novy",
+            nama: "Ir. Novy Nur Rahmillah Ayu Mokobombang, M.MT., Ph.D",
+            jab: "Assistant Professor",
+            p2only: false,
+            access: 4,
+            sempro: 6,
+            ex: true,
+            fit: {
+              dl: [8, 1],
+              nlp: [4, 0],
+              iot: [2, 0],
+              sec: [2, 0],
+              sys: [2, 0],
+              sim: [3, 0],
+            },
+            st: ["check", "Perlu dicek"],
+            pub: 12,
+            cit: 7,
+            h: 1,
+            hsrc: "Discover",
+            bidang:
+              "AI dan ilmu komputer, pengenalan pola dan computer vision. Daftar prodi menulis keahlian kebijakan TIK dan data terbuka.",
+            topik:
+              "Deteksi mangga, penyakit tanaman kelapa sawit, segmentasi lubang jalan dari drone, pemantauan lalu lintas, klasifikasi tomat dan kopi dengan YOLO.",
+            pengalaman:
+              "Ahli machine learning dan baik, tetapi sangat sulit ditemui karena sibuk.",
+            cek: "Gelar di profil berbeda dari daftar prodi dan hanya 12 publikasi terbaca (h-index 1). Kemungkinan profil belum lengkap.",
+            link: [
+              "https://discover.unhas.ac.id/researchers/novy-nur-rahmillah-ayu-mokobombang",
+              "Unhas Discover",
+            ],
+          },
+          {
+            id: "niswar",
+            short: "Prof Niswar",
+            nama: "Prof. Dr. Eng. Muhammad Niswar, ST, M.IT",
+            jab: "Professor",
+            p2only: false,
+            access: 4,
+            sempro: 8,
+            ex: true,
+            fit: {
+              dl: [5, 1],
+              nlp: [3, 0],
+              iot: [10, 1],
+              sec: [6, 1],
+              sys: [4.5, 1],
+              sim: [3, 0],
+            },
+            st: ["ok", "Profil terbaca"],
+            pub: 57,
+            cit: 420,
+            h: 10,
+            hsrc: "Unhas Scholar",
+            bidang:
+              "Internet of Things 100%, mikrokontroler, evaluasi kinerja, sensor, jaringan sensor nirkabel, machine learning terapan.",
+            topik:
+              "Aplikasi edge computing di Raspberry Pi, parkir pintar dengan YOLO, deteksi kematangan cabai dengan deep learning, optimasi baterai sensor nirkabel.",
+            pengalaman:
+              "Sangat baik dan teliti, tetapi sibuknya lebih parah dari Bu Novy. Condong ke internet engineering dan ubiquitous computing.",
+            link: [
+              "https://scholar.unhas.ac.id/en/persons/muhammad-niswar/",
+              "Unhas Scholar",
+            ],
+          },
+          {
+            id: "adnan",
+            short: "Prof Adnan",
+            nama: "Prof. Adnan, ST, M.T, Ph.D",
+            jab: "Professor",
+            p2only: false,
+            access: 8,
+            sempro: 6,
+            ex: false,
+            fit: {
+              dl: [3, 1],
+              nlp: [2, 0],
+              iot: [6.5, 1],
+              sec: [6, 1],
+              sys: [9.5, 1],
+              sim: [3, 0],
+            },
+            st: ["ok", "Profil terbaca (ID Scopus cocok)"],
+            pub: 23,
+            cit: 123,
+            h: 5,
+            hsrc: "Discover",
+            bidang:
+              "Ilmu komputer: sistem operasi 74%, komputasi paralel 32%, jaringan komputer 26%.",
+            topik:
+              "Kinerja prosesor multicore (ARM big.LITTLE pada rekonstruksi MRI), optimasi pemrograman paralel, integrasi blockchain, progressive web app, komunikasi data IoT.",
+            pengalaman:
+              "Bisa ditemui sering, tetapi lebih condong ke IoT. Belum ada cerita tentang sempro.",
+            link: [
+              "https://discover.unhas.ac.id/researchers/adnan",
+              "Unhas Discover",
+            ],
+          },
+          {
+            id: "ady",
+            short: "Pak Ady",
+            nama: "Dr. Eng. Ady Wahyudi Paundu, S.T., M.T.",
+            jab: "Assistant Professor",
+            p2only: false,
+            access: 7,
+            sempro: 6,
+            ex: false,
+            fit: {
+              dl: [3.5, 1],
+              nlp: [3.5, 0],
+              iot: [6, 1],
+              sec: [9.5, 1],
+              sys: [5.5, 1],
+              sim: [2.5, 0],
+            },
+            st: ["ok", "Profil terbaca"],
+            pub: 25,
+            cit: 101,
+            h: 5,
+            hsrc: "Unhas Scholar",
+            bidang:
+              "Blockchain 100%, sistem berkas 53%, IoT 46%, deteksi anomali 40%, smart contract 40%.",
+            topik:
+              "Blockchain untuk energi (microgrid, pemantauan transformator), keamanan e-learning dengan enkripsi dan penyimpanan terdesentralisasi, sistem pengawasan ujian dengan ML dan deep learning. Publikasi awal: deteksi serangan side channel di lingkungan virtualisasi.",
+            pengalaman:
+              "Sangat baik dan lumayan mudah ditemui, tetapi condong ke jaringan.",
+            link: [
+              "https://scholar.unhas.ac.id/en/persons/ady-wahyudi-paundu/",
+              "Unhas Scholar",
+            ],
+          },
+          {
+            id: "ema",
+            short: "Bu Ema",
+            nama: "Mukarramah Yusuf, B.Sc., M.Sc., Ph.D.",
+            jab: "Assistant Professor",
+            p2only: false,
+            access: 7,
+            sempro: 5,
+            ex: true,
+            fit: {
+              dl: [7.5, 1],
+              nlp: [6.5, 0],
+              iot: [2, 0],
+              sec: [4.5, 1],
+              sys: [2, 0],
+              sim: [9, 1],
+            },
+            st: ["ok", "Profil terbaca"],
+            pub: 11,
+            cit: 22,
+            h: 3,
+            hsrc: "Discover",
+            bidang:
+              "AI 64%, multimedia, interaksi manusia dan komputer, matematika terapan. Menurut pengalaman mahasiswa, beliau tetap jago machine learning, jadi skor topik ML dan NLP dinaikkan.",
+            topik:
+              "Deteksi kualitas produk dengan CNN dan transfer learning, algoritma genetika untuk TSP, pemodelan berbasis agen dan dinamika pasar, steganografi, aplikasi mobile Kotlin Multiplatform, serious game.",
+            pengalaman:
+              "Pada dasarnya baik dan mudah ditemui, tetapi kadang berubah suasana hati. Instruksi kadang bias atau kurang jelas, lalu kecewa ketika hasilnya tidak sesuai harapan.",
+            link: [
+              "https://discover.unhas.ac.id/researchers/mukarramah-yusuf",
+              "Unhas Discover",
+            ],
+          },
+          {
+            id: "kiki",
+            short: "Pak Kiki",
+            nama: "Dr.Eng. Zulkifli Tahir, S.T., M.Sc. (diasumsikan)",
+            jab: "Associate Professor",
+            p2only: false,
+            access: 5,
+            sempro: 6,
+            ex: false,
+            fit: {
+              dl: [7.5, 1],
+              nlp: [5, 0],
+              iot: [6, 1],
+              sec: [2.5, 0],
+              sys: [6.5, 1],
+              sim: [3.5, 0],
+            },
+            st: ["check", "Nama diasumsikan"],
+            pub: 47,
+            cit: 168,
+            h: 7,
+            hsrc: "Unhas Scholar",
+            bidang:
+              "CNN 100%, SVM 90%, fog computing, edge computing, sistem pengambilan keputusan.",
+            topik:
+              "Deteksi uang palsu, diagnosis Alzheimer dengan meta-learning, edge computing pascabencana, prakiraan gempa dengan deep learning.",
+            pengalaman:
+              "Baik, tetapi belum banyak yang diketahui. Skor akses dan sempro diisi nilai tengah.",
+            cek: 'Nama panggilan "Pak Kiki" saya cocokkan dengan Zulkifli Tahir dari daftar prodi. Mohon konfirmasi. Daftar prodi menulis keahlian sistem terdistribusi dan web, sedangkan publikasinya lebih ke CNN dan edge computing.',
+            link: [
+              "https://scholar.unhas.ac.id/en/persons/zulkifli-tahir/",
+              "Unhas Scholar",
+            ],
+          },
+          {
+            id: "abdi",
+            short: "Pak Abdi",
+            nama: "Dr. Muhammad Abdillah Rahmat, S.T., M.T.",
+            jab: "Assistant Professor",
+            p2only: true,
+            access: 7,
+            sempro: 7,
+            ex: true,
+            fit: {
+              dl: [8, 1],
+              nlp: [6, 1],
+              iot: [3, 0],
+              sec: [2.5, 0],
+              sys: [3, 0],
+              sim: [3, 0],
+            },
+            st: ["ok", "Profil terbaca (tangkapan layar Anda)"],
+            pub: 13,
+            cit: 22,
+            h: 3,
+            hsrc: "Scopus",
+            bidang:
+              "Minat di Google Scholar: computer vision dan intelligent transportation systems. Scopus (ID 57197857432): 13 dokumen, 22 sitasi, h-index 3. Google Scholar: 179 sitasi, h-index 7, i10-index 5.",
+            topik:
+              "Deteksi hoaks berita berbahasa Indonesia dengan support vector machine (2019, konferensi ICT), pemanfaatan machine learning dalam teknologi informasi (2025), sistem informasi berbasis web. Penulis bersama antara lain Prof Indrabayu dan Intan Sari Areni. Judul computer vision dan transportasi cerdas tidak terlihat di tangkapan layar, hanya di minat profil.",
+            pengalaman:
+              "Dosen muda. Diskusi terbuka dan enak, kritis, mudah ditemui, dan baik. Hanya bisa menjadi pembimbing 2.",
+            cek: 'Angka Scholar (179 sitasi) kemungkinan terinflasi, sebab ada judul ekonomi perbankan syariah dengan penulis "M Rahmat" yang tampaknya milik penulis lain. Karena itu angka Scopus yang dipakai di kartu ini. Skor topik NLP naik karena ada makalah deteksi hoaks, tetapi itu hanya satu makalah.',
+            link: [
+              "https://scholar.google.com/citations?user=H79SXmoAAAAJ&hl=en",
+              "Google Scholar",
+            ],
+            link2: [
+              "https://www.scopus.com/authid/detail.uri?authorId=57197857432",
+              "Scopus",
+            ],
+          },
+        ];
+        var byId = {};
+        DOSEN.forEach(function (d) {
+          byId[d.id] = d;
+        });
 
-<script>
-(function(){
-  var FIELDS={
-    dl:'Deep learning & computer vision',
-    nlp:'NLP & data mining',
-    iot:'IoT & edge computing',
-    sec:'Keamanan siber, blockchain & jaringan',
-    sys:'Komputasi paralel, sistem & web',
-    sim:'Pemodelan, simulasi & game'
-  };
-  var DOSEN=[
-    {id:'indrabayu',short:'Prof Indrabayu',nama:'Prof. Dr. Ir. Indrabayu, ST., MT., M.Bus.Sys., IPM',jab:'Professor',p2only:false,access:4,sempro:9.5,ex:true,
-     fit:{dl:[9.5,1],nlp:[6,0],iot:[3,0],sec:[3,0],sys:[3,0],sim:[3,0]},
-     st:['ok','Profil terbaca'],pub:144,cit:661,h:13,hsrc:'Discover',
-     bidang:'Ilmu komputer 100%, AI 88%, computer vision 51%. Kuartil: 1 Top 10%, 2 Q1, 11 Q2, 15 Q3, 23 Q4.',
-     topik:'Klasifikasi hasil pertanian, deteksi jalur dan slot parkir untuk kendaraan otonom, lokalisasi 3D stereo, klasifikasi sampah dengan model vision-language.',
-     pengalaman:'Paling kritis dan tegas, perfeksionis. Anak bimbingan umumnya berhasil menjawab semua pertanyaan sempro. Wajib tinggal dan hadir di lab setiap hari.',
-     link:['https://discover.unhas.ac.id/researchers/indrabayu','Unhas Discover']},
-    {id:'zahir',short:'Prof Zahir',nama:'Prof. Dr. Zahir Zainuddin, M.Sc.',jab:'Ketua Program Magister',p2only:false,access:9,sempro:4,ex:true,
-     fit:{dl:[9,1],nlp:[4.5,0],iot:[5,1],sec:[2.5,0],sys:[5,1],sim:[3,0]},
-     st:['ok','Profil terbaca'],pub:105,cit:441,h:9,hsrc:'Discover',
-     bidang:'AI, pengenalan pola, pemrosesan citra. Kata kunci: deep learning, machine learning, computer vision, jaringan saraf. Kuartil: 8 Q2, 8 Q3, 14 Q4.',
-     topik:'Pengenalan ekspresi matematika tulisan tangan (CNN, EfficientNetB0), citra medis (rontgen dada, Alzheimer), klasifikasi kata karate (CNN+LSTM), jaringan sensor nirkabel dan IoT, rekonstruksi video paralel.',
-     pengalaman:'Sangat baik, ramah, mudah ditemui. Kadang terlalu cepat meloloskan sempro, sehingga banyak anak bimbingan yang dibantai penguji. Penyebabnya belum jelas: mahasiswa atau kurang detail.',
-     link:['https://discover.unhas.ac.id/researchers/zahir-zainuddin','Unhas Discover']},
-    {id:'amil',short:'Prof Amil',nama:'Prof. Dr. Ir. Amil Ahmad Ilham, S.T., M.IT',jab:'Professor',p2only:false,access:5,sempro:8,ex:true,
-     fit:{dl:[7,1],nlp:[8.5,1],iot:[2.5,0],sec:[2.5,0],sys:[3,0],sim:[3,0]},
-     st:['ok','Profil terbaca'],pub:100,cit:478,h:11,hsrc:'Discover',
-     bidang:'AI 60%, engineering 29%, computer vision 16%. Kuartil: 8 Q2, 12 Q3, 16 Q4.',
-     topik:'Ekstraksi fitur morfologi dengan NLP, model deep learning berbasis transformer BERT, encoder teks transformer untuk semantik visual Indonesia, deteksi emosi dengan VGG16, deteksi dan pelacakan kendaraan dengan YOLO.',
-     pengalaman:'Sangat baik dan teliti, tetapi terkadang sibuk.',
-     link:['https://discover.unhas.ac.id/researchers/amil-ahmad-ilham','Unhas Discover']},
-    {id:'novy',short:'Bu Novy',nama:'Ir. Novy Nur Rahmillah Ayu Mokobombang, M.MT., Ph.D',jab:'Assistant Professor',p2only:false,access:3,sempro:6,ex:true,
-     fit:{dl:[8,1],nlp:[4,0],iot:[2,0],sec:[2,0],sys:[2,0],sim:[3,0]},
-     st:['check','Perlu dicek'],pub:12,cit:7,h:1,hsrc:'Discover',
-     bidang:'AI dan ilmu komputer, pengenalan pola dan computer vision. Daftar prodi menulis keahlian kebijakan TIK dan data terbuka.',
-     topik:'Deteksi mangga, penyakit tanaman kelapa sawit, segmentasi lubang jalan dari drone, pemantauan lalu lintas, klasifikasi tomat dan kopi dengan YOLO.',
-     pengalaman:'Ahli machine learning dan baik, tetapi sangat sulit ditemui karena sibuk.',
-     cek:'Gelar di profil berbeda dari daftar prodi dan hanya 12 publikasi terbaca (h-index 1). Kemungkinan profil belum lengkap.',
-     link:['https://discover.unhas.ac.id/researchers/novy-nur-rahmillah-ayu-mokobombang','Unhas Discover']},
-    {id:'niswar',short:'Prof Niswar',nama:'Prof. Dr. Eng. Muhammad Niswar, ST, M.IT',jab:'Professor',p2only:false,access:2,sempro:8,ex:true,
-     fit:{dl:[5,1],nlp:[3,0],iot:[10,1],sec:[6,1],sys:[4.5,1],sim:[3,0]},
-     st:['ok','Profil terbaca'],pub:57,cit:420,h:10,hsrc:'Unhas Scholar',
-     bidang:'Internet of Things 100%, mikrokontroler, evaluasi kinerja, sensor, jaringan sensor nirkabel, machine learning terapan.',
-     topik:'Aplikasi edge computing di Raspberry Pi, parkir pintar dengan YOLO, deteksi kematangan cabai dengan deep learning, optimasi baterai sensor nirkabel.',
-     pengalaman:'Sangat baik dan teliti, tetapi sibuknya lebih parah dari Bu Novy. Condong ke internet engineering dan ubiquitous computing.',
-     link:['https://scholar.unhas.ac.id/en/persons/muhammad-niswar/','Unhas Scholar']},
-    {id:'adnan',short:'Prof Adnan',nama:'Prof. Adnan, ST, M.T, Ph.D',jab:'Professor',p2only:false,access:8,sempro:5,ex:false,
-     fit:{dl:[3,1],nlp:[2,0],iot:[6.5,1],sec:[6,1],sys:[9.5,1],sim:[3,0]},
-     st:['ok','Profil terbaca (ID Scopus cocok)'],pub:23,cit:123,h:5,hsrc:'Discover',
-     bidang:'Ilmu komputer: sistem operasi 74%, komputasi paralel 32%, jaringan komputer 26%.',
-     topik:'Kinerja prosesor multicore (ARM big.LITTLE pada rekonstruksi MRI), optimasi pemrograman paralel, integrasi blockchain, progressive web app, komunikasi data IoT.',
-     pengalaman:'Bisa ditemui sering, tetapi lebih condong ke IoT. Belum ada cerita tentang sempro.',
-     link:['https://discover.unhas.ac.id/researchers/adnan','Unhas Discover']},
-    {id:'ady',short:'Pak Ady',nama:'Dr. Eng. Ady Wahyudi Paundu, S.T., M.T.',jab:'Assistant Professor',p2only:false,access:7,sempro:6,ex:false,
-     fit:{dl:[3.5,1],nlp:[3.5,0],iot:[6,1],sec:[9.5,1],sys:[5.5,1],sim:[2.5,0]},
-     st:['ok','Profil terbaca'],pub:25,cit:101,h:5,hsrc:'Unhas Scholar',
-     bidang:'Blockchain 100%, sistem berkas 53%, IoT 46%, deteksi anomali 40%, smart contract 40%.',
-     topik:'Blockchain untuk energi (microgrid, pemantauan transformator), keamanan e-learning dengan enkripsi dan penyimpanan terdesentralisasi, sistem pengawasan ujian dengan ML dan deep learning. Publikasi awal: deteksi serangan side channel di lingkungan virtualisasi.',
-     pengalaman:'Sangat baik dan lumayan mudah ditemui, tetapi condong ke jaringan.',
-     link:['https://scholar.unhas.ac.id/en/persons/ady-wahyudi-paundu/','Unhas Scholar']},
-    {id:'ema',short:'Bu Ema',nama:'Mukarramah Yusuf, B.Sc., M.Sc., Ph.D.',jab:'Assistant Professor',p2only:false,access:7,sempro:4,ex:true,
-     fit:{dl:[4.5,1],nlp:[4,0],iot:[2,0],sec:[4.5,1],sys:[2,0],sim:[9,1]},
-     st:['ok','Profil terbaca'],pub:11,cit:22,h:3,hsrc:'Discover',
-     bidang:'AI 64%, multimedia, interaksi manusia dan komputer, matematika terapan.',
-     topik:'Deteksi kualitas produk dengan CNN dan transfer learning, algoritma genetika untuk TSP, pemodelan berbasis agen dan dinamika pasar, steganografi, aplikasi mobile Kotlin Multiplatform, serious game.',
-     pengalaman:'Pada dasarnya baik dan mudah ditemui, tetapi kadang berubah suasana hati. Instruksi kadang bias atau kurang jelas, lalu kecewa ketika hasilnya tidak sesuai harapan.',
-     link:['https://discover.unhas.ac.id/researchers/mukarramah-yusuf','Unhas Discover']},
-    {id:'kiki',short:'Pak Kiki',nama:'Dr.Eng. Zulkifli Tahir, S.T., M.Sc. (diasumsikan)',jab:'Associate Professor',p2only:false,access:5,sempro:5,ex:false,
-     fit:{dl:[7.5,1],nlp:[5,0],iot:[6,1],sec:[2.5,0],sys:[6.5,1],sim:[3.5,0]},
-     st:['check','Nama diasumsikan'],pub:47,cit:168,h:7,hsrc:'Unhas Scholar',
-     bidang:'CNN 100%, SVM 90%, fog computing, edge computing, sistem pengambilan keputusan.',
-     topik:'Deteksi uang palsu, diagnosis Alzheimer dengan meta-learning, edge computing pascabencana, prakiraan gempa dengan deep learning.',
-     pengalaman:'Baik, tetapi belum banyak yang diketahui. Skor akses dan sempro diisi nilai tengah.',
-     cek:'Nama panggilan "Pak Kiki" saya cocokkan dengan Zulkifli Tahir dari daftar prodi. Mohon konfirmasi. Daftar prodi menulis keahlian sistem terdistribusi dan web, sedangkan publikasinya lebih ke CNN dan edge computing.',
-     link:['https://scholar.unhas.ac.id/en/persons/zulkifli-tahir/','Unhas Scholar']},
-    {id:'abdi',short:'Pak Abdi',nama:'Dr. Muhammad Abdillah Rahmat, S.T., M.T.',jab:'Assistant Professor',p2only:true,access:9,sempro:7,ex:true,
-     fit:{dl:[8,1],nlp:[6,1],iot:[3,0],sec:[2.5,0],sys:[3,0],sim:[3,0]},
-     st:['ok','Profil terbaca (tangkapan layar Anda)'],pub:13,cit:22,h:3,hsrc:'Scopus',
-     bidang:'Minat di Google Scholar: computer vision dan intelligent transportation systems. Scopus (ID 57197857432): 13 dokumen, 22 sitasi, h-index 3. Google Scholar: 179 sitasi, h-index 7, i10-index 5.',
-     topik:'Deteksi hoaks berita berbahasa Indonesia dengan support vector machine (2019, konferensi ICT), pemanfaatan machine learning dalam teknologi informasi (2025), sistem informasi berbasis web. Penulis bersama antara lain Prof Indrabayu dan Intan Sari Areni. Judul computer vision dan transportasi cerdas tidak terlihat di tangkapan layar, hanya di minat profil.',
-     pengalaman:'Dosen muda. Diskusi terbuka dan enak, kritis, mudah ditemui, dan baik. Hanya bisa menjadi pembimbing 2.',
-     cek:'Angka Scholar (179 sitasi) kemungkinan terinflasi, sebab ada judul ekonomi perbankan syariah dengan penulis "M Rahmat" yang tampaknya milik penulis lain. Karena itu angka Scopus yang dipakai di kartu ini. Skor topik NLP naik karena ada makalah deteksi hoaks, tetapi itu hanya satu makalah.',
-     link:['https://scholar.google.com/citations?user=H79SXmoAAAAJ&hl=en','Google Scholar'],
-     link2:['https://www.scopus.com/authid/detail.uri?authorId=57197857432','Scopus']}
-  ];
-  var byId={};DOSEN.forEach(function(d){byId[d.id]=d});
+        var PRESETS = [
+          ["Seimbang", 50, 25, 25],
+          ["Topik dulu", 70, 15, 15],
+          ["Mudah ditemui", 30, 50, 20],
+          ["Sempro aman", 30, 20, 50],
+        ];
+        var MODES = [
+          ["abdi", "Skor dengan Pak Abdi"],
+          ["solo", "Skor pembimbing 1 sendiri"],
+        ];
+        var state = { field: "nlp", t: 50, a: 25, s: 25, mode: "abdi" };
+        var tips = {};
+        var tipN = 0;
 
-  var PRESETS=[['Seimbang',50,25,25],['Topik dulu',70,15,15],['Mudah ditemui',30,50,20],['Sempro aman',30,20,50]];
-  var MODES=[['abdi','Skor dengan Pak Abdi'],['solo','Skor pembimbing 1 sendiri']];
-  var state={field:'nlp',t:50,a:25,s:25,mode:'abdi'};
-  var tips={};var tipN=0;
+        function $(id) {
+          return document.getElementById(id);
+        }
+        function f1(x) {
+          return (Math.round(x * 10) / 10).toFixed(1);
+        }
 
-  function $(id){return document.getElementById(id)}
-  function f1(x){return (Math.round(x*10)/10).toFixed(1)}
+        function score(d) {
+          var sum = state.t + state.a + state.s || 1;
+          var ct = (state.t / sum) * d.fit[state.field][0],
+            ca = (state.a / sum) * d.access,
+            cs = (state.s / sum) * d.sempro;
+          return { ct: ct, ca: ca, cs: cs, total: ct + ca + cs };
+        }
+        function tipFor(html) {
+          var k = "t" + tipN++;
+          tips[k] = html;
+          return k;
+        }
 
-  function score(d){
-    var sum=(state.t+state.a+state.s)||1;
-    var ct=state.t/sum*d.fit[state.field][0],ca=state.a/sum*d.access,cs=state.s/sum*d.sempro;
-    return {ct:ct,ca:ca,cs:cs,total:ct+ca+cs};
-  }
-  function tipFor(html){var k='t'+(tipN++);tips[k]=html;return k}
+        function renderChips() {
+          var h = "";
+          Object.keys(FIELDS).forEach(function (k) {
+            h +=
+              '<button class="chip" type="button" data-f="' +
+              k +
+              '" aria-pressed="' +
+              (state.field === k) +
+              '">' +
+              FIELDS[k] +
+              "</button>";
+          });
+          $("fields").innerHTML = h;
+        }
+        function renderPresets() {
+          var h = '<span class="lbl">Preset bobot</span>';
+          PRESETS.forEach(function (p, i) {
+            var on = state.t === p[1] && state.a === p[2] && state.s === p[3];
+            h +=
+              '<button class="mini" type="button" data-p="' +
+              i +
+              '" aria-pressed="' +
+              on +
+              '">' +
+              p[0] +
+              "</button>";
+          });
+          $("presets").innerHTML = h;
+        }
+        function renderModes() {
+          var h = '<span class="lbl">Urutkan menurut</span>';
+          MODES.forEach(function (m) {
+            h +=
+              '<button class="mini" type="button" data-m="' +
+              m[0] +
+              '" aria-pressed="' +
+              (state.mode === m[0]) +
+              '">' +
+              m[1] +
+              "</button>";
+          });
+          $("modes").innerHTML = h;
+        }
 
-  function renderChips(){
-    var h='';
-    Object.keys(FIELDS).forEach(function(k){
-      h+='<button class="chip" type="button" data-f="'+k+'" aria-pressed="'+(state.field===k)+'">'+FIELDS[k]+'</button>';
-    });
-    $('fields').innerHTML=h;
-  }
-  function renderPresets(){
-    var h='<span class="lbl">Preset bobot</span>';
-    PRESETS.forEach(function(p,i){
-      var on=state.t===p[1]&&state.a===p[2]&&state.s===p[3];
-      h+='<button class="mini" type="button" data-p="'+i+'" aria-pressed="'+on+'">'+p[0]+'</button>';
-    });
-    $('presets').innerHTML=h;
-  }
-  function renderModes(){
-    var h='<span class="lbl">Urutkan menurut</span>';
-    MODES.forEach(function(m){h+='<button class="mini" type="button" data-m="'+m[0]+'" aria-pressed="'+(state.mode===m[0])+'">'+m[1]+'</button>'});
-    $('modes').innerHTML=h;
-  }
+        function renderBars() {
+          tips = {};
+          tipN = 0;
+          var rows = DOSEN.map(function (d) {
+            return { d: d, s: score(d) };
+          }).sort(function (x, y) {
+            return y.s.total - x.s.total;
+          });
+          var h = "";
+          rows.forEach(function (r, i) {
+            var d = r.d,
+              s = r.s,
+              fit = d.fit[state.field];
+            var tip =
+              "<b>" +
+              d.short +
+              "</b>" +
+              '<div class="r"><span><i style="background:var(--s1)"></i>Topik</span><span>' +
+              f1(fit[0]) +
+              " / 10</span></div>" +
+              '<div class="r"><span><i style="background:var(--s2)"></i>Mudah ditemui</span><span>' +
+              f1(d.access) +
+              " / 10</span></div>" +
+              '<div class="r"><span><i style="background:var(--s3)"></i>Sempro</span><span>' +
+              f1(d.sempro) +
+              " / 10</span></div>" +
+              '<div class="nt">Skor topik: ' +
+              (fit[1]
+                ? "berdasar publikasi di profil"
+                : "inferensi dari bidang umum") +
+              (d.ex
+                ? ""
+                : ". Akses dan sempro: belum ada cerita, nilai tengah") +
+              ".</div>";
+            var k = tipFor(tip);
+            h +=
+              '<div class="brow' +
+              (i === 0 ? " top" : "") +
+              '" tabindex="0" data-tip="' +
+              k +
+              '">' +
+              '<div class="nm"><span>' +
+              d.short +
+              "</span>" +
+              (d.p2only
+                ? '<span class="badge p2">hanya P2</span>'
+                : "<small>" + d.jab + "</small>") +
+              "</div>" +
+              '<div class="tr"><div class="seg" style="width:' +
+              s.ct * 10 +
+              '%;background:var(--s1)"></div><div class="seg" style="width:' +
+              s.ca * 10 +
+              '%;background:var(--s2)"></div><div class="seg" style="width:' +
+              s.cs * 10 +
+              '%;background:var(--s3)"></div></div>' +
+              '<div class="v">' +
+              f1(s.total) +
+              "</div></div>";
+          });
+          $("bars").innerHTML = h;
+          var t =
+            "<thead><tr><th>Dosen</th><th>Topik</th><th>Akses</th><th>Sempro</th><th>Skor</th></tr></thead><tbody>";
+          rows.forEach(function (r) {
+            t +=
+              "<tr><td>" +
+              r.d.short +
+              (r.d.p2only ? " (P2)" : "") +
+              '</td><td class="n">' +
+              f1(r.d.fit[state.field][0]) +
+              '</td><td class="n">' +
+              f1(r.d.access) +
+              '</td><td class="n">' +
+              f1(r.d.sempro) +
+              '</td><td class="n">' +
+              f1(r.s.total) +
+              "</td></tr>";
+          });
+          $("tbl").innerHTML = t + "</tbody>";
+          $("fname").textContent = FIELDS[state.field];
+          $("fname2").textContent = FIELDS[state.field];
+        }
 
-  function renderBars(){
-    tips={};tipN=0;
-    var rows=DOSEN.map(function(d){return {d:d,s:score(d)}}).sort(function(x,y){return y.s.total-x.s.total});
-    var h='';
-    rows.forEach(function(r,i){
-      var d=r.d,s=r.s,fit=d.fit[state.field];
-      var tip='<b>'+d.short+'</b>'+
-        '<div class="r"><span><i style="background:var(--s1)"></i>Topik</span><span>'+f1(fit[0])+' / 10</span></div>'+
-        '<div class="r"><span><i style="background:var(--s2)"></i>Mudah ditemui</span><span>'+f1(d.access)+' / 10</span></div>'+
-        '<div class="r"><span><i style="background:var(--s3)"></i>Sempro</span><span>'+f1(d.sempro)+' / 10</span></div>'+
-        '<div class="nt">Skor topik: '+(fit[1]?'berdasar publikasi di profil':'inferensi dari bidang umum')+(d.ex?'':'. Akses dan sempro: belum ada cerita, nilai tengah')+'.</div>';
-      var k=tipFor(tip);
-      h+='<div class="brow'+(i===0?' top':'')+'" tabindex="0" data-tip="'+k+'">'+
-        '<div class="nm"><span>'+d.short+'</span>'+(d.p2only?'<span class="badge p2">hanya P2</span>':'<small>'+d.jab+'</small>')+'</div>'+
-        '<div class="tr"><div class="seg" style="width:'+(s.ct*10)+'%;background:var(--s1)"></div><div class="seg" style="width:'+(s.ca*10)+'%;background:var(--s2)"></div><div class="seg" style="width:'+(s.cs*10)+'%;background:var(--s3)"></div></div>'+
-        '<div class="v">'+f1(s.total)+'</div></div>';
-    });
-    $('bars').innerHTML=h;
-    var t='<thead><tr><th>Dosen</th><th>Topik</th><th>Akses</th><th>Sempro</th><th>Skor</th></tr></thead><tbody>';
-    rows.forEach(function(r){t+='<tr><td>'+r.d.short+(r.d.p2only?' (P2)':'')+'</td><td class="n">'+f1(r.d.fit[state.field][0])+'</td><td class="n">'+f1(r.d.access)+'</td><td class="n">'+f1(r.d.sempro)+'</td><td class="n">'+f1(r.s.total)+'</td></tr>'});
-    $('tbl').innerHTML=t+'</tbody>';
-    $('fname').textContent=FIELDS[state.field];
-    $('fname2').textContent=FIELDS[state.field];
-  }
+        function renderCombos() {
+          var S = {};
+          DOSEN.forEach(function (d) {
+            S[d.id] = score(d);
+          });
+          var abdi = byId.abdi,
+            f = state.field,
+            list = [];
+          DOSEN.forEach(function (p1) {
+            if (p1.p2only) return;
+            var bonus =
+              (0.5 * Math.max(0, Math.min(10, abdi.access - p1.access))) / 10;
+            list.push({
+              p1: p1,
+              solo: Math.max(0, S[p1.id].total - 0.4),
+              wa: 0.65 * S[p1.id].total + 0.35 * S[abdi.id].total + bonus,
+              bonus: bonus,
+            });
+          });
+          var key = state.mode === "solo" ? "solo" : "wa";
+          list.sort(function (a, b) {
+            return b[key] - a[key];
+          });
+          var h = "";
+          list.forEach(function (x, i) {
+            var w = [];
+            if (!x.p1.fit[f][1])
+              w.push(x.p1.short + ": skor topik berupa inferensi");
+            if (x.p1.access <= 4)
+              w.push(
+                x.p1.short +
+                  " sulit dijangkau, Pak Abdi paling membantu di sini",
+              );
+            if (x.p1.id === "indrabayu")
+              w.push("wajib hadir di lab, cocokkan dengan gaya kerja Anda");
+            if (x.p1.id === "zahir")
+              w.push(
+                "ada cerita sempro cepat lolos lalu dibantai penguji, jangan hanya mengandalkan akses mudah",
+              );
+            if (abdi.fit[f][0] < 5)
+              w.push(
+                "Pak Abdi kurang cocok di bidang ini (skor topik " +
+                  f1(abdi.fit[f][0]) +
+                  "), perannya lebih sebagai penyeimbang dan teman diskusi kritis",
+              );
+            var d = x.wa - x.solo;
+            h +=
+              '<div class="prow"><div class="rk">#' +
+              (i + 1) +
+              '</div><div class="mid"><b>' +
+              x.p1.short +
+              "</b>" +
+              '<div class="pb"><span>Sendiri</span><div class="tr"><i style="width:' +
+              x.solo * 10 +
+              '%;background:var(--s1)"></i></div><span class="v">' +
+              f1(x.solo) +
+              "</span></div>" +
+              '<div class="pb"><span>+ Pak Abdi</span><div class="tr"><i style="width:' +
+              x.wa * 10 +
+              '%;background:var(--s2)"></i></div><span class="v">' +
+              f1(x.wa) +
+              "</span></div></div>" +
+              '<div class="dl"><b>' +
+              (d >= 0 ? "+" : "") +
+              f1(d) +
+              "</b>selisih dengan Pak Abdi</div>" +
+              '<div class="why"><span>Topik ' +
+              f1(x.p1.fit[f][0]) +
+              " · akses " +
+              f1(x.p1.access) +
+              " · sempro " +
+              f1(x.p1.sempro) +
+              "</span>" +
+              (w.length
+                ? '<span class="w">Perhatikan: ' + w.join("; ") + ".</span>"
+                : "") +
+              "</div></div>";
+          });
+          $("combos").innerHTML = h;
+        }
 
-  function renderCombos(){
-    var S={};DOSEN.forEach(function(d){S[d.id]=score(d)});
-    var abdi=byId.abdi,f=state.field,list=[];
-    DOSEN.forEach(function(p1){
-      if(p1.p2only)return;
-      var bonus=0.5*Math.max(0,Math.min(10,abdi.access-p1.access))/10;
-      list.push({p1:p1,solo:Math.max(0,S[p1.id].total-0.4),wa:0.65*S[p1.id].total+0.35*S[abdi.id].total+bonus,bonus:bonus});
-    });
-    var key=state.mode==='solo'?'solo':'wa';
-    list.sort(function(a,b){return b[key]-a[key]});
-    var h='';
-    list.forEach(function(x,i){
-      var w=[];
-      if(!x.p1.fit[f][1])w.push(x.p1.short+': skor topik berupa inferensi');
-      if(x.p1.access<=4)w.push(x.p1.short+' sulit atau berat dijangkau, Pak Abdi paling membantu di sini');
-      if(x.p1.id==='zahir')w.push('ada cerita sempro cepat lolos lalu dibantai penguji, jangan hanya mengandalkan akses mudah');
-      if(abdi.fit[f][0]<5)w.push('Pak Abdi kurang cocok di bidang ini (skor topik '+f1(abdi.fit[f][0])+'), perannya lebih sebagai penyeimbang dan teman diskusi kritis');
-      var d=x.wa-x.solo;
-      h+='<div class="prow"><div class="rk">#'+(i+1)+'</div><div class="mid"><b>'+x.p1.short+'</b>'+
-        '<div class="pb"><span>Sendiri</span><div class="tr"><i style="width:'+(x.solo*10)+'%;background:var(--s1)"></i></div><span class="v">'+f1(x.solo)+'</span></div>'+
-        '<div class="pb"><span>+ Pak Abdi</span><div class="tr"><i style="width:'+(x.wa*10)+'%;background:var(--s2)"></i></div><span class="v">'+f1(x.wa)+'</span></div></div>'+
-        '<div class="dl"><b>'+(d>=0?'+':'')+f1(d)+'</b>selisih dengan Pak Abdi</div>'+
-        '<div class="why"><span>Topik '+f1(x.p1.fit[f][0])+' · akses '+f1(x.p1.access)+' · sempro '+f1(x.p1.sempro)+'</span>'+(w.length?'<span class="w">Perhatikan: '+w.join('; ')+'.</span>':'')+'</div></div>';
-    });
-    $('combos').innerHTML=h;
-  }
+        function renderCards() {
+          var h = "";
+          DOSEN.forEach(function (d) {
+            var m = function (v) {
+              return v == null ? "n/a" : v;
+            };
+            h +=
+              '<article class="card"><div><h3>' +
+              d.nama +
+              '</h3><div class="jab">' +
+              d.jab +
+              (d.p2only ? " · hanya pembimbing 2" : "") +
+              "</div></div>" +
+              '<span class="st ' +
+              d.st[0] +
+              '">' +
+              d.st[1] +
+              "</span>" +
+              '<div class="met"><div><b>' +
+              m(d.pub) +
+              "</b><span>Publikasi</span></div><div><b>" +
+              m(d.cit) +
+              "</b><span>Sitasi</span></div><div><b>" +
+              m(d.h) +
+              "</b><span>h-index</span></div></div>" +
+              "<dl><div><dt>Bidang di profil</dt><dd>" +
+              d.bidang +
+              "</dd></div>" +
+              "<div><dt>Topik terbaru</dt><dd>" +
+              d.topik +
+              "</dd></div>" +
+              "<div><dt>Pengalaman mahasiswa</dt><dd>" +
+              d.pengalaman +
+              "</dd></div>" +
+              (d.cek
+                ? '<div><dt style="color:var(--warn)">Perlu dicek</dt><dd>' +
+                  d.cek +
+                  "</dd></div>"
+                : "") +
+              '</dl><div class="src"><a href="' +
+              d.link[0] +
+              '" target="_blank" rel="noopener">' +
+              d.link[1] +
+              "</a>" +
+              (d.link2
+                ? ' · <a href="' +
+                  d.link2[0] +
+                  '" target="_blank" rel="noopener">' +
+                  d.link2[1] +
+                  "</a>"
+                : "") +
+              "</div></article>";
+          });
+          $("cards").innerHTML = h;
+        }
 
-  function renderCards(){
-    var h='';
-    DOSEN.forEach(function(d){
-      var m=function(v){return v==null?'n/a':v};
-      h+='<article class="card"><div><h3>'+d.nama+'</h3><div class="jab">'+d.jab+(d.p2only?' · hanya pembimbing 2':'')+'</div></div>'+
-        '<span class="st '+d.st[0]+'">'+d.st[1]+'</span>'+
-        '<div class="met"><div><b>'+m(d.pub)+'</b><span>Publikasi</span></div><div><b>'+m(d.cit)+'</b><span>Sitasi</span></div><div><b>'+m(d.h)+'</b><span>h-index</span></div></div>'+
-        '<dl><div><dt>Bidang di profil</dt><dd>'+d.bidang+'</dd></div>'+
-        '<div><dt>Topik terbaru</dt><dd>'+d.topik+'</dd></div>'+
-        '<div><dt>Pengalaman mahasiswa</dt><dd>'+d.pengalaman+'</dd></div>'+
-        (d.cek?'<div><dt style="color:var(--warn)">Perlu dicek</dt><dd>'+d.cek+'</dd></div>':'')+
-        '</dl><div class="src"><a href="'+d.link[0]+'" target="_blank" rel="noopener">'+d.link[1]+'</a>'+(d.link2?' · <a href="'+d.link2[0]+'" target="_blank" rel="noopener">'+d.link2[1]+'</a>':'')+'</div></article>';
-    });
-    $('cards').innerHTML=h;
-  }
+        function renderH() {
+          var rows = DOSEN.filter(function (d) {
+            return d.h != null;
+          }).sort(function (a, b) {
+            return b.h - a.h;
+          });
+          var h = "";
+          rows.forEach(function (d) {
+            h +=
+              '<div class="hrow"><div><div style="font-size:14px">' +
+              d.short +
+              "</div><small>" +
+              d.hsrc +
+              '</small></div><div class="tr"><i style="width:' +
+              (d.h / 13) * 100 +
+              '%"></i></div><div class="v">' +
+              d.h +
+              "</div></div>";
+          });
+          $("hbars").innerHTML = h;
+        }
 
-  function renderH(){
-    var rows=DOSEN.filter(function(d){return d.h!=null}).sort(function(a,b){return b.h-a.h});
-    var h='';
-    rows.forEach(function(d){
-      h+='<div class="hrow"><div><div style="font-size:14px">'+d.short+'</div><small>'+d.hsrc+'</small></div><div class="tr"><i style="width:'+(d.h/13*100)+'%"></i></div><div class="v">'+d.h+'</div></div>';
-    });
-    $('hbars').innerHTML=h;
-  }
+        function renderSrcs() {
+          var h = "";
+          DOSEN.forEach(function (d) {
+            h +=
+              '<a href="' +
+              d.link[0] +
+              '" target="_blank" rel="noopener">' +
+              d.short +
+              " (" +
+              d.link[1] +
+              ")</a>";
+            if (d.link2)
+              h +=
+                '<a href="' +
+                d.link2[0] +
+                '" target="_blank" rel="noopener">' +
+                d.short +
+                " (" +
+                d.link2[1] +
+                ")</a>";
+          });
+          $("srcs").innerHTML = h;
+        }
 
-  function renderSrcs(){
-    var h='';
-    DOSEN.forEach(function(d){h+='<a href="'+d.link[0]+'" target="_blank" rel="noopener">'+d.short+' ('+d.link[1]+')</a>';if(d.link2)h+='<a href="'+d.link2[0]+'" target="_blank" rel="noopener">'+d.short+' ('+d.link2[1]+')</a>'});
-    $('srcs').innerHTML=h;
-  }
+        function sync() {
+          $("vT").textContent = state.t;
+          $("vA").textContent = state.a;
+          $("vS").textContent = state.s;
+          $("wT").value = state.t;
+          $("wA").value = state.a;
+          $("wS").value = state.s;
+          renderPresets();
+          renderBars();
+          renderCombos();
+        }
 
-  function sync(){
-    $('vT').textContent=state.t;$('vA').textContent=state.a;$('vS').textContent=state.s;
-    $('wT').value=state.t;$('wA').value=state.a;$('wS').value=state.s;
-    renderPresets();renderBars();renderCombos();
-  }
+        document.addEventListener("click", function (e) {
+          var b = e.target.closest("button");
+          if (b) {
+            if (b.dataset.f) {
+              state.field = b.dataset.f;
+              renderChips();
+              renderBars();
+              renderCombos();
+              return;
+            }
+            if (b.dataset.p) {
+              var p = PRESETS[+b.dataset.p];
+              state.t = p[1];
+              state.a = p[2];
+              state.s = p[3];
+              sync();
+              return;
+            }
+            if (b.dataset.m) {
+              state.mode = b.dataset.m;
+              renderModes();
+              renderCombos();
+              return;
+            }
+          }
+          var r = e.target.closest("[data-tip]");
+          if (r) showTip(r, e.clientX, e.clientY);
+          else hideTip();
+        });
+        ["wT", "wA", "wS"].forEach(function (id) {
+          $(id).addEventListener("input", function () {
+            state[{ wT: "t", wA: "a", wS: "s" }[id]] = +$(id).value;
+            if (state.t + state.a + state.s === 0) {
+              state.t = 1;
+            }
+            $("vT").textContent = state.t;
+            $("vA").textContent = state.a;
+            $("vS").textContent = state.s;
+            renderPresets();
+            renderBars();
+            renderCombos();
+          });
+        });
 
-  document.addEventListener('click',function(e){
-    var b=e.target.closest('button');
-    if(b){
-      if(b.dataset.f){state.field=b.dataset.f;renderChips();renderBars();renderCombos();return}
-      if(b.dataset.p){var p=PRESETS[+b.dataset.p];state.t=p[1];state.a=p[2];state.s=p[3];sync();return}
-      if(b.dataset.m){state.mode=b.dataset.m;renderModes();renderCombos();return}
-    }
-    var r=e.target.closest('[data-tip]');
-    if(r)showTip(r,e.clientX,e.clientY);else hideTip();
-  });
-  ['wT','wA','wS'].forEach(function(id){
-    $(id).addEventListener('input',function(){
-      state[{wT:'t',wA:'a',wS:'s'}[id]]=+$(id).value;
-      if(state.t+state.a+state.s===0){state.t=1}
-      $('vT').textContent=state.t;$('vA').textContent=state.a;$('vS').textContent=state.s;
-      renderPresets();renderBars();renderCombos();
-    });
-  });
+        var tip = $("tip");
+        function showTip(el, x, y) {
+          tip.innerHTML = tips[el.dataset.tip] || "";
+          tip.style.display = "block";
+          var w = tip.offsetWidth,
+            hh = tip.offsetHeight;
+          var left = Math.min(Math.max(8, x + 14), window.innerWidth - w - 8);
+          var top =
+            y + 16 + hh > window.innerHeight
+              ? Math.max(8, y - hh - 12)
+              : y + 16;
+          tip.style.left = left + "px";
+          tip.style.top = top + "px";
+        }
+        function hideTip() {
+          tip.style.display = "none";
+        }
+        document.addEventListener("mousemove", function (e) {
+          var r = e.target.closest && e.target.closest("[data-tip]");
+          if (r) showTip(r, e.clientX, e.clientY);
+          else hideTip();
+        });
+        document.addEventListener("focusin", function (e) {
+          var r = e.target.closest && e.target.closest("[data-tip]");
+          if (r) {
+            var rc = r.getBoundingClientRect();
+            showTip(r, rc.left + rc.width / 3, rc.bottom - 10);
+          } else hideTip();
+        });
+        document.addEventListener("focusout", hideTip);
 
-  var tip=$('tip');
-  function showTip(el,x,y){
-    tip.innerHTML=tips[el.dataset.tip]||'';tip.style.display='block';
-    var w=tip.offsetWidth,hh=tip.offsetHeight;
-    var left=Math.min(Math.max(8,x+14),window.innerWidth-w-8);
-    var top=y+16+hh>window.innerHeight?Math.max(8,y-hh-12):y+16;
-    tip.style.left=left+'px';tip.style.top=top+'px';
-  }
-  function hideTip(){tip.style.display='none'}
-  document.addEventListener('mousemove',function(e){
-    var r=e.target.closest&&e.target.closest('[data-tip]');
-    if(r)showTip(r,e.clientX,e.clientY);else hideTip();
-  });
-  document.addEventListener('focusin',function(e){
-    var r=e.target.closest&&e.target.closest('[data-tip]');
-    if(r){var rc=r.getBoundingClientRect();showTip(r,rc.left+rc.width/3,rc.bottom-10)}else hideTip();
-  });
-  document.addEventListener('focusout',hideTip);
-
-  renderChips();renderModes();renderCards();renderH();renderSrcs();sync();
-})();
-</script>
-
-</body>
+        renderChips();
+        renderModes();
+        renderCards();
+        renderH();
+        renderSrcs();
+        sync();
+      })();
+    </script>
+  </body>
 </html>
